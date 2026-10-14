@@ -27,7 +27,8 @@ object DhizukuBridge {
     const val PKG_DHIZUKU = "com.rosan.dhizuku"
 
     private val restrictionKeyMap = mapOf(
-        "no_camera" to UserManager.DISALLOW_CAMERA,
+        // DISALLOW_CAMERA ("no_camera") is not exposed by the public Android SDK stubs;
+        // setUserRestriction falls back to passing "no_camera" directly.
         "no_usb_file_transfer" to UserManager.DISALLOW_USB_FILE_TRANSFER,
         "no_mount_physical_media" to UserManager.DISALLOW_MOUNT_PHYSICAL_MEDIA,
         "no_safe_boot" to UserManager.DISALLOW_SAFE_BOOT,
@@ -149,6 +150,9 @@ object DhizukuBridge {
             val admin = getOwnerComponent()
                 ?: error("Dhizuku owner ComponentName unavailable")
             val restriction = restrictionKeyMap[keyOrAlias] ?: keyOrAlias
+            if (restriction == "no_camera") {
+                runCatching { dpm.setCameraDisabled(admin, enabled) }
+            }
             if (enabled) {
                 dpm.addUserRestriction(admin, restriction)
             } else {
