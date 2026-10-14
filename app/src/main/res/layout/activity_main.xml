@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F19"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dhizuku GitOps MDM Agent"
+            android:textColor="#F8FAFC"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtDhizukuStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Checking Dhizuku status..."
+            android:textColor="#38BDF8"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRequestDhizuku"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Request Dhizuku Perm" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnOpenDhizuku"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Open Dhizuku App" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="GitHub Raw Policy JSON URL"
+            android:textColor="#94A3B8"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/inputPolicyUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="https://raw.githubusercontent.com/.../policy.json"
+            android:inputType="textUri"
+            android:textColor="#E2E8F0"
+            android:textColorHint="#64748B"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Optional GitHub PAT (only needed if repo is private)"
+            android:textColor="#94A3B8"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/inputGithubToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="ghp_... (optional)"
+            android:inputType="textPassword"
+            android:textColor="#E2E8F0"
+            android:textColorHint="#64748B"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnSaveAndSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Save &amp; Sync Policy Now" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchFastPoll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Foreground Fast-Polling (Every 15s while open)"
+            android:textColor="#E2E8F0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Policy Reconciliation Audit Log"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtAuditLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="#131B2E"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:textColor="#E2E8F0"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
