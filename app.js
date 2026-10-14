@@ -285,7 +285,8 @@ function renderStateToUI() {
   (state.install_apks || []).forEach((item, idx) => {
     const li = document.createElement("li");
     li.className = "tag-item";
-    li.innerHTML = `<span>${item.package_name} (v${item.version_code})</span><button data-remove-apk="${idx}">Remove</button>`;
+    const chunkBadge = item.apk_urls && item.apk_urls.length > 1 ? ` · ${item.apk_urls.length} parts` : "";
+    li.innerHTML = `<span>${item.package_name} (v${item.version_code}${chunkBadge})</span><button data-remove-apk="${idx}">Remove</button>`;
     apkList.appendChild(li);
   });
 
@@ -432,6 +433,30 @@ function arrayBufferToBase64(buffer) {
   return btoa(binary);
 }
 
+async function getApksDirShaMap(owner, repo, branch, token) {
+  const shaMap = {};
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/apks?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    if (res.ok) {
+      const items = await res.json();
+      if (Array.isArray(items)) {
+        items.forEach((item) => {
+          if (item && item.path && item.sha) shaMap[item.path] = item.sha;
+        });
+      }
+    }
+  } catch (_) {}
+  return shaMap;
+}
+
 document.getElementById("btnUploadApkFile").addEventListener("click", async () => {
   saveAuth();
   const owner = elOwner.value.trim();
@@ -457,31 +482,79 @@ document.getElementById("btnUploadApkFile").addEventListener("click", async () =
   }
 
   const safeFileName = `${pkg.replace(/[^a-zA-Z0-9._-]/g, "_")}-v${ver}.apk`;
-  const repoPath = `apks/${safeFileName}`;
+  const CHUNK_SIZE = 12 * 1024 * 1024; // 12 MB per chunk to stay well below GitHub Contents API limits
 
   try {
-    setStatus(`Reading ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)...`);
-    const buffer = await file.arrayBuffer();
-    const base64Content = arrayBufferToBase64(buffer);
+    const totalMb = (file.size / (1024 * 1024)).toFixed(2);
+    const shaMap = await getApksDirShaMap(owner, repo, branch, token);
 
-    setStatus(`Uploading ${repoPath} to ${owner}/${repo}@${branch}...`);
-    await commitBase64ToGitHub(
-      owner,
-      repo,
-      branch,
-      repoPath,
-      token,
-      base64Content,
-      `feat(apk): upload ${safeFileName} for OTA silent install`
-    );
+    if (file.size <= CHUNK_SIZE) {
+      const repoPath = `apks/${safeFileName}`;
+      setStatus(`Reading ${file.name} (${totalMb} MB)...`);
+      const buffer = await file.arrayBuffer();
+      const base64Content = arrayBufferToBase64(buffer);
 
-    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${repoPath}`;
-    document.getElementById("apkUrl").value = rawUrl;
-    state.install_apks = (state.install_apks || []).filter((x) => x.package_name !== pkg);
-    state.install_apks.push({ package_name: pkg, apk_url: rawUrl, version_code: ver });
-    syncControlsToState();
-    renderStateToUI();
-    setStatus(`Uploaded ${repoPath} and added to install_apks! Click "Commit & Push Policy" to dispatch to the phone.`);
+      setStatus(`Uploading ${repoPath} (${totalMb} MB) to ${owner}/${repo}@${branch}...`);
+      await commitBase64ToGitHub(
+        owner,
+        repo,
+        branch,
+        repoPath,
+        token,
+        base64Content,
+        `feat(apk): upload ${safeFileName} for OTA silent install`,
+        shaMap[repoPath]
+      );
+
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${repoPath}`;
+      document.getElementById("apkUrl").value = rawUrl;
+      state.install_apks = (state.install_apks || []).filter((x) => x.package_name !== pkg);
+      state.install_apks.push({ package_name: pkg, apk_url: rawUrl, version_code: ver });
+      syncControlsToState();
+      renderStateToUI();
+      setStatus(`Uploaded ${repoPath} and added to install_apks! Click "Commit & Push Policy" to dispatch to the phone.`);
+    } else {
+      const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+      const partUrls = [];
+
+      for (let i = 0; i < totalChunks; i++) {
+        const start = i * CHUNK_SIZE;
+        const end = Math.min(start + CHUNK_SIZE, file.size);
+        const partNum = String(i + 1).padStart(3, "0");
+        const partFileName = `${safeFileName}.part${partNum}`;
+        const partPath = `apks/${partFileName}`;
+        const chunkMb = ((end - start) / (1024 * 1024)).toFixed(2);
+
+        setStatus(`Uploading large APK (${totalMb} MB): chunk ${i + 1} of ${totalChunks} (${chunkMb} MB)...`);
+        const sliceBuffer = await file.slice(start, end).arrayBuffer();
+        const base64Chunk = arrayBufferToBase64(sliceBuffer);
+
+        await commitBase64ToGitHub(
+          owner,
+          repo,
+          branch,
+          partPath,
+          token,
+          base64Chunk,
+          `feat(apk): upload ${partFileName} (${i + 1}/${totalChunks}) for OTA silent install`,
+          shaMap[partPath]
+        );
+
+        partUrls.push(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${partPath}`);
+      }
+
+      document.getElementById("apkUrl").value = partUrls[0];
+      state.install_apks = (state.install_apks || []).filter((x) => x.package_name !== pkg);
+      state.install_apks.push({
+        package_name: pkg,
+        apk_url: partUrls[0],
+        apk_urls: partUrls,
+        version_code: ver
+      });
+      syncControlsToState();
+      renderStateToUI();
+      setStatus(`Uploaded ${totalChunks} chunks (${totalMb} MB total) and queued ${pkg}! Click "Commit & Push Policy" to dispatch to the phone.`);
+    }
   } catch (err) {
     setStatus(`APK upload failed: ${err.message}`, true);
   }
@@ -639,20 +712,22 @@ async function fetchPolicyFromGitHub() {
   }
 }
 
-async function commitBase64ToGitHub(owner, repo, branch, path, token, base64Content, message) {
+async function commitBase64ToGitHub(owner, repo, branch, path, token, base64Content, message, knownSha) {
   const headers = {
     Accept: "application/vnd.github+json",
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json"
   };
-  let sha = undefined;
-  const getRes = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
-    { headers }
-  );
-  if (getRes.ok) {
-    const existing = await getRes.json();
-    sha = existing.sha;
+  let sha = knownSha;
+  if (!sha) {
+    const getRes = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
+      { headers }
+    );
+    if (getRes.ok) {
+      const existing = await getRes.json();
+      sha = existing.sha;
+    }
   }
   const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
     method: "PUT",
