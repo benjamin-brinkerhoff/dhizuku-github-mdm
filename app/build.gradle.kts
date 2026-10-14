@@ -15,6 +15,9 @@ if (debugKeystoreBase64File.exists() && (!debugKeystoreFile.exists() || debugKey
     } catch (_: Exception) {}
 }
 
+val appVersionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 1
+val appVersionName = (project.findProperty("versionName") as? String) ?: "1.0.0"
+
 android {
     namespace = "com.mdm.dhizuku"
     compileSdk = 35
@@ -34,8 +37,8 @@ android {
         applicationId = "com.mdm.dhizuku"
         minSdk = 28
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
     }
 
     buildTypes {
