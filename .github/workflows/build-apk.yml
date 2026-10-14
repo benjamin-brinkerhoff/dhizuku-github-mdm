@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - 'policy.json'
       - 'config.json'
+      - 'device_state.json'
       - 'docs/**'
       - 'apks/**'
   workflow_dispatch:
