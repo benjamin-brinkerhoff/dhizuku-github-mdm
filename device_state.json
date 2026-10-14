@@ -1,11 +1,3516 @@
 {
-  "device_model": "Android Device",
-  "android_version": "14",
-  "sdk_int": 34,
-  "last_sync": "2026-10-14T14:48:00Z",
-  "battery_percent": 100,
+  "device_model": "samsung SM-A156U1",
+  "android_version": "16",
+  "sdk_int": 36,
+  "last_sync": "2026-10-14T15:01:27Z",
+  "battery_percent": 38,
   "is_charging": false,
   "dhizuku_active": true,
-  "installed_apps_count": 0,
-  "installed_apps": []
+  "installed_apps_count": 438,
+  "installed_apps": [
+    {
+      "package_name": "com.google.android.networkstack.tethering",
+      "app_name": "Tethering",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.provider.filterprovider",
+      "app_name": "Filter Provider",
+      "version_name": "9.5.19",
+      "version_code": 951900000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mydevice",
+      "app_name": "Nearby devices",
+      "version_name": "1.3.07.3844",
+      "version_code": 130703844,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.cts.priv.ctsshim",
+      "app_name": "com.android.cts.priv.ctsshim",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.smartswitchassistant",
+      "app_name": "com.samsung.android.smartswitchassistant",
+      "version_name": "2.4.02",
+      "version_code": 240200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.vsim.ericssonnsds.webapp",
+      "app_name": "NSDSWebApp",
+      "version_name": "3.1.02.0",
+      "version_code": 310200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.setupwizardlegalprovider",
+      "app_name": "SetupWizardLegalProvider",
+      "version_name": "3.0.03.0",
+      "version_code": 300300000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.youtube",
+      "app_name": "YouTube",
+      "version_name": "21.40.161",
+      "version_code": 1561301413,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.location.nsflp2",
+      "app_name": "Samsung Location SDK",
+      "version_name": "6.4.08",
+      "version_code": 640800000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.uwb.resources",
+      "app_name": "System UWB Resources",
+      "version_name": "T-initial",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.themestore",
+      "app_name": "Galaxy Themes",
+      "version_name": "6.0.10.4",
+      "version_code": 601004103,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.chromecustomizations",
+      "app_name": "ChromeCustomizations",
+      "version_name": "3.0.39",
+      "version_code": 303900000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.display.cutout.emulation.corner",
+      "app_name": "Corner cutout",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.ext.services",
+      "app_name": "Android Services Library",
+      "version_name": "aml_372733400",
+      "version_code": 372733400,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.SMT.lang_pt_br_f00",
+      "app_name": "SamsungTTS Brazilian Portuguese Default voice 1 - Classic",
+      "version_name": "3.1.24.90",
+      "version_code": 312490900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.kfbp",
+      "app_name": "KnoxFrameBufferProvider",
+      "version_name": "1.2.06",
+      "version_code": 120600200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.knnr",
+      "app_name": "KnoxNeuralNetworkRuntime",
+      "version_name": "1.2.04",
+      "version_code": 120400400,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.display.cutout.emulation.double",
+      "app_name": "Double cutout",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.location.nfwlocationprivacy",
+      "app_name": "Service provider location",
+      "version_name": "6.0.00",
+      "version_code": 600000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.telephony",
+      "app_name": "Phone and Messaging Storage",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.ve.vebgm",
+      "app_name": "Samsung Editing Assets",
+      "version_name": "2.8.28.0",
+      "version_code": 282800000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.parser",
+      "app_name": "DRParser Mode",
+      "version_name": "15.2.00.2",
+      "version_code": 1520000002,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.dynsystem",
+      "app_name": "Dynamic System Updates",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.unifiedtp",
+      "app_name": "Tethering Provision",
+      "version_name": "2.0.00.4",
+      "version_code": 200004200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.afwsamples.testdpc",
+      "app_name": "Test DPC",
+      "version_name": "9.0.12",
+      "version_code": 9012,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.networkstack",
+      "app_name": "NetworkStackOverlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.googlequicksearchbox",
+      "app_name": "Google",
+      "version_name": "17.64.15.ve.arm64",
+      "version_code": 301817218,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.bluetoothagent",
+      "app_name": "Bluetooth Agent",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.calendar",
+      "app_name": "Calendar",
+      "version_name": "12.7.07.3",
+      "version_code": 1270703000,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.cellbroadcastservice",
+      "app_name": "Cell Broadcast Service",
+      "version_name": "R-initial",
+      "version_code": 300000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.verizon.mips.services",
+      "app_name": "Carrier Services",
+      "version_name": "1.3.405.4",
+      "version_code": 405,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.calendar",
+      "app_name": "Calendar storage",
+      "version_name": "12.7.01.5",
+      "version_code": 1270100005,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.osp.app.signin",
+      "app_name": "Samsung account",
+      "version_name": "15.7.01.1",
+      "version_code": 1570101100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.emergency",
+      "app_name": "Emergency SOS",
+      "version_name": "17.5.00.18",
+      "version_code": 1750000018,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.aremoji",
+      "app_name": "Galaxy Avatar",
+      "version_name": "10.5.00.11",
+      "version_code": 1050011011,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.automation",
+      "app_name": "TetheringAutomation",
+      "version_name": "2.0.1",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.media",
+      "app_name": "com.android.providers.media",
+      "version_name": "16",
+      "version_code": 1028,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.onetimeinitializer",
+      "app_name": "Google One Time Init",
+      "version_name": "16-13928101",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.ext.shared",
+      "app_name": "Android Shared Library",
+      "version_name": "1",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.virtualmachine.res",
+      "app_name": "com.android.virtualmachine.res",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.wallpapercropper",
+      "app_name": "com.android.wallpapercropper",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.federatedcompute",
+      "app_name": "com.google.android.federatedcompute",
+      "version_name": "17",
+      "version_code": 371899999,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wallpaper.res",
+      "app_name": "com.samsung.android.wallpaper.res",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.mediatek.SettingsProviderResOverlay",
+      "app_name": "com.mediatek.SettingsProviderResOverlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.smartmirroring",
+      "app_name": "Smart View",
+      "version_name": "8.2.27.28",
+      "version_code": 822728000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.skms.android.agent",
+      "app_name": "SKMSAgentService",
+      "version_name": "1.0.41-39",
+      "version_code": 104139000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mcf.autohotspot",
+      "app_name": "AutoHotspotMDE",
+      "version_name": "1.0.96.0",
+      "version_code": 109600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.rosan.dhizuku",
+      "app_name": "Dhizuku",
+      "version_name": "2.12.0",
+      "version_code": 19,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mapsagent",
+      "app_name": "Application recommendations",
+      "version_name": "1.0.08.3",
+      "version_code": 100800003,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.er",
+      "app_name": "com.samsung.android.knox.er",
+      "version_name": "1.0.02.6",
+      "version_code": 100206000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.virtualdevicemanager",
+      "app_name": "Virtual Device Manager",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.safetyassurance",
+      "app_name": "Emergency sharing",
+      "version_name": "16.2.00.14",
+      "version_code": 1620001014,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.incallui",
+      "app_name": "Call",
+      "version_name": "17.6.00.152",
+      "version_code": 1760000152,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.containercore",
+      "app_name": "KnoxCore",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.service.tagservice",
+      "app_name": "Tags",
+      "version_name": "6.0.00.44",
+      "version_code": 600044000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.kidsinstaller",
+      "app_name": "Samsung Kids Installer",
+      "version_name": "10.7.02.0",
+      "version_code": 1070200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.factory.camera",
+      "app_name": "FactoryCamera",
+      "version_name": "5.1.69",
+      "version_code": 516900100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.mdm.dhizuku",
+      "app_name": "Dhizuku MDM Agent",
+      "version_name": "1.0.25",
+      "version_code": 25,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.usbsettings",
+      "app_name": "USBSettings",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.telephony.auto_generated_characteristics_rro",
+      "app_name": "com.android.providers.telephony.auto_generated_characteristics_rro",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.easysetup",
+      "app_name": "Nearby device scanning",
+      "version_name": "11.1.24.8",
+      "version_code": 1112400008,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.externalstorage",
+      "app_name": "External Storage",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.aware.service",
+      "app_name": "Quick Share Agent",
+      "version_name": "3.5.22.24",
+      "version_code": 352224130,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.easyonehand",
+      "app_name": "EasyOneHand",
+      "version_name": "7.0",
+      "version_code": 7,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.htmlviewer",
+      "app_name": "HTML Viewer",
+      "version_name": "3.0.16",
+      "version_code": 301600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.companiondevicemanager",
+      "app_name": "Companion Device Manager",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.mms.service",
+      "app_name": "MmsService",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.rubin.app",
+      "app_name": "Customization Service",
+      "version_name": "3.8.01.3",
+      "version_code": 380103000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.saeupgradeoffload.resources",
+      "app_name": "com.samsung.android.wifi.saeupgradeoffload.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.downloads",
+      "app_name": "Download Manager",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.health.connect.backuprestore",
+      "app_name": "com.google.android.health.connect.backuprestore",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.messaging",
+      "app_name": "Messages",
+      "version_name": "messages.android_20261005_05_RC00.phone_samsung_openbeta_dynamic",
+      "version_code": 324838910,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.easyMover.Agent",
+      "app_name": "Smart Switch Agent",
+      "version_name": "2.0.06.11",
+      "version_code": 200600011,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.networkstack.tethering.overlay",
+      "app_name": "com.google.android.networkstack.tethering.overlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "org.lds.bom",
+      "app_name": "Book of Mormon",
+      "version_name": "4.13.0 (48819.3205195)",
+      "version_code": 48819,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.wsomacp",
+      "app_name": "Configuration message",
+      "version_name": "9.2.10",
+      "version_code": 921000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.iaft",
+      "app_name": "iaft",
+      "version_name": "1.1",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.faceservice",
+      "app_name": "FaceService",
+      "version_name": "12.0.69",
+      "version_code": 1206900000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.gpuwatchapp",
+      "app_name": "GPUWatch",
+      "version_name": "2.1.02.27010",
+      "version_code": 210227010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.simagent",
+      "app_name": "Sim Agent",
+      "version_name": "1.2.00.11",
+      "version_code": 120011100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.monotype.android.font.foundation",
+      "app_name": "Foundation",
+      "version_name": "3.5.00.0",
+      "version_code": 350000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.widgetapp.easymodecontactswidget",
+      "app_name": "Favorite Contacts",
+      "version_name": "15.2.10",
+      "version_code": 1521000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.kpecore",
+      "app_name": "KPECore",
+      "version_name": "2.5.04.17",
+      "version_code": 250402017,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.parentalcare",
+      "app_name": "Parental controls",
+      "version_name": "2.9.01.2",
+      "version_code": 290102100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.pushmanager",
+      "app_name": "KnoxPushManager",
+      "version_name": "1.4.01.3",
+      "version_code": 140103110,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.factorykeystring",
+      "app_name": "DeviceKeystring",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.verifier",
+      "app_name": "Android Developer Verifier",
+      "version_name": "1.0.991779013",
+      "version_code": 77989,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.signature",
+      "app_name": "Signature",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.app.networkfilter",
+      "app_name": "KnoxNetworkFilter",
+      "version_name": "2.23",
+      "version_code": 23,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.samsungapps",
+      "app_name": "Galaxy Store",
+      "version_name": "4.6.11.4",
+      "version_code": 461104100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.inputshare",
+      "app_name": "Multi control",
+      "version_name": "2.7.01.4",
+      "version_code": 270104000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.cosu.kiosk",
+      "app_name": "Study Library",
+      "version_name": "1.0.3",
+      "version_code": 4,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.configupdater",
+      "app_name": "ConfigUpdater",
+      "version_name": "16-13928101",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.wlantest",
+      "app_name": "WlanTest",
+      "version_name": "1.1.0",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.accessibility.talkback",
+      "app_name": "TalkBack",
+      "version_name": "16.2.00.13",
+      "version_code": 1620013000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.providers.media.module",
+      "app_name": "Media picker",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.smartfpsadjuster",
+      "app_name": "SmartFPSAdjuster",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.permissioncontroller",
+      "app_name": "com.google.android.overlay.modules.permissioncontroller",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.billing",
+      "app_name": "Samsung Checkout",
+      "version_name": "5.1.01.9",
+      "version_code": 510100009,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.avatarpicker",
+      "app_name": "Choose a picture",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.visual.cloudcore",
+      "app_name": "Samsung Visual Cloud Core",
+      "version_name": "2.1.09.55",
+      "version_code": 210955000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.epdgtestapp",
+      "app_name": "EpdgTestApp",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "moe.shizuku.privileged.api",
+      "app_name": "Shizuku",
+      "version_name": "13.6.0.r1086.2650830c",
+      "version_code": 1086,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.zt.framework",
+      "app_name": "KnoxZT Framework",
+      "version_name": "1.3.00.41",
+      "version_code": 130041000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.p2paware.resources",
+      "app_name": "com.samsung.android.wifi.p2paware.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.daemonapp",
+      "app_name": "Weather",
+      "version_name": "1.7.25.68",
+      "version_code": 172568100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.ar.core",
+      "app_name": "Google Play Services for AR",
+      "version_name": "1.56.262080393",
+      "version_code": 262080393,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.sve",
+      "app_name": "Samsung Call Media",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.downloads.ui",
+      "app_name": "Downloads",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.vending",
+      "app_name": "Google Play Store",
+      "version_name": "53.5.48-34 [0] [PR] 995634172",
+      "version_code": 85354840,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.pacprocessor",
+      "app_name": "PacProcessor",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.simappdialog",
+      "app_name": "Sim App Dialog",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.attestation",
+      "app_name": "com.samsung.android.knox.attestation",
+      "version_name": "1.4.03.3",
+      "version_code": 140303110,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.secsoundpicker",
+      "app_name": "SecSoundPicker",
+      "version_name": "4.0.01.8",
+      "version_code": 400108000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.incall.contentprovider",
+      "app_name": "CallContentProvider",
+      "version_name": "16.0.00.1",
+      "version_code": 1600000001,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.adservices.api",
+      "app_name": "Ad Privacy",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.internal.systemui.navbar.sec_gestural",
+      "app_name": "Gestural Navigation Bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.ts43authservice",
+      "app_name": "Ts43AuthService",
+      "version_name": "5.1.00.64",
+      "version_code": 510002064,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.microsoft.skydrive",
+      "app_name": "OneDrive",
+      "version_name": "7.66 (Beta 73)",
+      "version_code": 2027667342,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.display.cutout.emulation.hole",
+      "app_name": "Punch Hole cutout",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.display.cutout.emulation.tall",
+      "app_name": "Tall cutout",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.intellivoiceservice",
+      "app_name": "Samsung Intelligence Service",
+      "version_name": "1.3.10.24",
+      "version_code": 131024200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.soundalive",
+      "app_name": "Sound quality and effects",
+      "version_name": "16.1.32",
+      "version_code": 1613200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.kmxservice",
+      "app_name": "Knox Matrix",
+      "version_name": "2.0.16.55650",
+      "version_code": 201655650,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.provider.badge",
+      "app_name": "BadgeProvider",
+      "version_name": "2.1.00.19",
+      "version_code": 210000019,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.certinstaller",
+      "app_name": "Certificate installer",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.carrierconfig",
+      "app_name": "com.android.carrierconfig",
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.accessibility.voiceaccess",
+      "app_name": "Voice Access",
+      "version_name": "17.1.987741882",
+      "version_code": 138424,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.systemui.navbar.threebutton",
+      "app_name": "3 Button Navigation Bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.wifi.dialog",
+      "app_name": "com.android.wifi.dialog",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.SMT",
+      "app_name": "Samsung text-to-speech engine",
+      "version_name": "3.5.02.16",
+      "version_code": 350200016,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.cmh",
+      "app_name": "CMHProvider",
+      "version_name": "11.5.48",
+      "version_code": 1154800000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.sdm",
+      "app_name": "System update",
+      "version_name": "5.2.64",
+      "version_code": 526401200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.vvm",
+      "app_name": "Voicemail",
+      "version_name": "20.0.01.15",
+      "version_code": 2000115000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "android",
+      "app_name": "Android System",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.kaiw.reader",
+      "app_name": "KaiwReader",
+      "version_name": "2.0.8",
+      "version_code": 49,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wcmurlsnetworkstack",
+      "app_name": "WcmUrlsNetworkStackOverlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.sm.devicesecurity",
+      "app_name": "App protection",
+      "version_name": "9.5.06",
+      "version_code": 950600110,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.cellbroadcastreceiver",
+      "app_name": "com.google.android.overlay.modules.cellbroadcastreceiver",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.internal.systemui.navbar.sec_gestural_no_hint",
+      "app_name": "Gestural Navigation Bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.SMT.lang_es_mx_f00",
+      "app_name": "SamsungTTS Mexican Spanish Voice 1",
+      "version_name": "3.1.25.2",
+      "version_code": 312502900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.aircommandmanager",
+      "app_name": "FACM",
+      "version_name": "2.2.26",
+      "version_code": 222600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.sdksandbox",
+      "app_name": "com.google.android.sdksandbox",
+      "version_name": "T-initial",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.softapwpathree.resources",
+      "app_name": "com.samsung.android.wifi.softapwpathree.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.service.stplatform",
+      "app_name": "SmartThings Companion",
+      "version_name": "2.3.10.15",
+      "version_code": 231015000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.smartface",
+      "app_name": "SmartFaceService",
+      "version_name": "1.0",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.egg",
+      "app_name": "Android Easter Egg",
+      "version_name": "1.0",
+      "version_code": 12,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.mtp",
+      "app_name": "MTP Host",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.nfc",
+      "app_name": "NFC Service",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.ons",
+      "app_name": "com.android.ons",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.stk",
+      "app_name": "SIM toolkit",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.messaging",
+      "app_name": "Messages",
+      "version_name": "16.7.91.101",
+      "version_code": 1679100101,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.backupconfirm",
+      "app_name": "com.android.backupconfirm",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.klmsagent",
+      "app_name": "KLMS Agent",
+      "version_name": "1.4.05",
+      "version_code": 140500020,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.SMT.lang_en_us_l03",
+      "app_name": "SamsungTTS US English Voice 1",
+      "version_name": "3.1.25.4",
+      "version_code": 312504900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.SecSetupWizard",
+      "app_name": "Samsung setup wizard",
+      "version_name": "8.5.45.1",
+      "version_code": 854500001,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.telephonyui",
+      "app_name": "Call settings",
+      "version_name": "17.6.00.126",
+      "version_code": 1760000126,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "org.lds.ldssa",
+      "app_name": "Gospel Library",
+      "version_name": "7.8.0-(780060.3399138)",
+      "version_code": 780060,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.softap.resources",
+      "app_name": "com.samsung.android.wifi.softap.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.as",
+      "app_name": "Android System Intelligence",
+      "version_name": "B.29.playstore.oemfull.988117775",
+      "version_code": 14999525,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.gm",
+      "app_name": "Gmail",
+      "version_name": "2026.09.28.992490113.Release",
+      "version_code": 66071966,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.virtualdevicemanager.auto_generated_characteristics_rro",
+      "app_name": "com.android.virtualdevicemanager.auto_generated_characteristics_rro",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.largetcpbuffer.resources",
+      "app_name": "com.samsung.android.wifi.largetcpbuffer.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.verifier.overlay",
+      "app_name": "com.google.android.verifier.overlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.SMT.lang_es_us_l01",
+      "app_name": "SamsungTTS US Español Voz 1",
+      "version_name": "3.1.25.2",
+      "version_code": 312502900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.tachyon",
+      "app_name": "Meet",
+      "version_name": "379.0.989469524.duo.android_20260928.02_p0.s",
+      "version_code": 7672597,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.gmsconfig.common",
+      "app_name": "com.google.android.overlay.gmsconfig.common",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.hwmoduletest",
+      "app_name": "HwModuleTest",
+      "version_name": "1.3.45",
+      "version_code": 134500000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.settings.intelligence",
+      "app_name": "Settings Suggestions",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.bcservice",
+      "app_name": "com.sec.bcservice",
+      "version_name": "2.0",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.modem.settings",
+      "app_name": "SilentLogging",
+      "version_name": "1.0.1",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.mediatek.frameworkresoverlay",
+      "app_name": "com.mediatek.frameworkresoverlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.monotype.android.font.samsungone",
+      "app_name": "SamsungOne",
+      "version_name": "3.5.00.0",
+      "version_code": 350000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.privacydashboard",
+      "app_name": "Permission usage",
+      "version_name": "17.5.00.10",
+      "version_code": 1750010000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.permissioncontroller",
+      "app_name": "Permission controller",
+      "version_name": "aml_372766680",
+      "version_code": 372766680,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.servicemodeapp",
+      "app_name": "Service mode",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.setupwizard",
+      "app_name": "Android Setup",
+      "version_name": "236.871377611",
+      "version_code": 40439,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.gallery3d",
+      "app_name": "Gallery",
+      "version_name": "15.8.00.90",
+      "version_code": 1580000090,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.settings",
+      "app_name": "Settings Storage",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.volumemonitorprovider",
+      "app_name": "VolumeMonitorProvider",
+      "version_name": "16.1.01",
+      "version_code": 1610100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.accessibility",
+      "app_name": "Accessibility",
+      "version_name": "17.5.00.41",
+      "version_code": 1750041000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.imsservice",
+      "app_name": "IMS Service",
+      "version_name": "6.0.260716.0",
+      "version_code": 260716160,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.sharedstoragebackup",
+      "app_name": "com.android.sharedstoragebackup",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.facebook.services",
+      "app_name": "Meta Services",
+      "version_name": "155.0.35",
+      "version_code": 892936048,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mobileservice",
+      "app_name": "Group Sharing",
+      "version_name": "13.9.02.3",
+      "version_code": 1390200003,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.printspooler",
+      "app_name": "Print Spooler",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.drmboost",
+      "app_name": "DrmEventapp",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mdx.kit",
+      "app_name": "Quick Share Connectivity",
+      "version_name": "1.5.14.1",
+      "version_code": 151401000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.storyservice",
+      "app_name": "Gallery stories",
+      "version_name": "11.5.67",
+      "version_code": 1156700000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.dreams.basic",
+      "app_name": "Basic Daydreams",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.ext.services",
+      "app_name": "com.google.android.overlay.modules.ext.services",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.as.oss",
+      "app_name": "Private Compute Services",
+      "version_name": "1.0.release.993595852",
+      "version_code": 149829,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.rampart",
+      "app_name": "Auto Blocker",
+      "version_name": "1.3.11.0",
+      "version_code": 131100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.RilPhoneNumberService",
+      "app_name": "PhoneNumberService",
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.se",
+      "app_name": "SecureElementApplication",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.inputdevices",
+      "app_name": "Input Devices",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.resources",
+      "app_name": "com.samsung.android.wifi.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.gmsconfig.photos",
+      "app_name": "com.google.android.overlay.gmsconfig.photos",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.kgclient",
+      "app_name": "Device Services",
+      "version_name": "3.2.74",
+      "version_code": 327400000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.knox.securefolder",
+      "app_name": "Secure Folder",
+      "version_name": "2.0.20.60",
+      "version_code": 202000060,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.providers.assisteddialing",
+      "app_name": "Assisted Dialing",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.bips",
+      "app_name": "Default Print Service",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.audio.hearing.visualization.accessibility.scribe",
+      "app_name": "Live Transcribe & Sound Notifications",
+      "version_name": "9.0.965827460",
+      "version_code": 206928,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.stk2",
+      "app_name": "SIM toolkit",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.game.gametools",
+      "app_name": "Game Booster",
+      "version_name": "8.0.03.2",
+      "version_code": 800304002,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.contacts",
+      "app_name": "Contacts",
+      "version_name": "16.2.00.91",
+      "version_code": 1620091000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.service.peoplestripe",
+      "app_name": "People",
+      "version_name": "15.3.00.5",
+      "version_code": 1530001005,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.da.daagent",
+      "app_name": "Dual Messenger",
+      "version_name": "3.6.00.0",
+      "version_code": 360000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.captiveportallogin",
+      "app_name": "Captive Portal Login",
+      "version_name": "17",
+      "version_code": 372735010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.brightnessbackupservice",
+      "app_name": "BrightnessBNR",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.gmsconfig.geotz",
+      "app_name": "com.google.android.overlay.gmsconfig.geotz",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.appsearch.apk",
+      "app_name": "com.google.android.appsearch.apk",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.test.LTEfunctionality",
+      "app_name": "com.test.LTEfunctionality",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.smartcallprovider",
+      "app_name": "Smart Call",
+      "version_name": "17.0.00.6",
+      "version_code": 1700006100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.smartcapture",
+      "app_name": "Samsung capture",
+      "version_name": "6.1.80.31",
+      "version_code": 618031100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.bard",
+      "app_name": "Gemini",
+      "version_name": "1.0.971139365",
+      "version_code": 341,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.maps",
+      "app_name": "Maps",
+      "version_name": "26.40.00.989295350",
+      "version_code": 1068809342,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.modulemetadata",
+      "app_name": "Main components",
+      "version_name": "2026-09-01S+",
+      "version_code": 372701430,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.taskedge",
+      "app_name": "Tasks",
+      "version_name": "17.5.00.8",
+      "version_code": 1750007008,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.dynamiclock",
+      "app_name": "Wallpaper services",
+      "version_name": "3.7.00.53",
+      "version_code": 370053100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.advp.imssettings",
+      "app_name": "IMS Settings",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.location",
+      "app_name": "slocation",
+      "version_name": "2.2.31.10",
+      "version_code": 223100010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.clockpackage",
+      "app_name": "Clock",
+      "version_name": "12.5.60.29",
+      "version_code": 1256029100,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.RilServiceModeApp",
+      "app_name": "Service mode RIL",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.webview",
+      "app_name": "Android System WebView",
+      "version_name": "153.0.8010.57",
+      "version_code": 801005703,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mdecservice",
+      "app_name": "Call & text on other devices",
+      "version_name": "8.1.00.14",
+      "version_code": 810014100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.documentsui",
+      "app_name": "com.google.android.overlay.modules.documentsui",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.telephonyui.esimclient",
+      "app_name": "EsimClient",
+      "version_name": "17.6.00.126",
+      "version_code": 1760000126,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.ai",
+      "app_name": "WiFiAiService",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.networkstack",
+      "app_name": "Network manager",
+      "version_name": "17",
+      "version_code": 372735010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.rkpdapp",
+      "app_name": "RemoteProvisioner",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.contactkeys",
+      "app_name": "Android System Key Verifier",
+      "version_name": "1.463.993399841",
+      "version_code": 22425,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.accessory.budsunitemgr",
+      "app_name": "Galaxy Buds",
+      "version_name": "9.0.10.1724",
+      "version_code": 901001724,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.server.telecom",
+      "app_name": "Phone calls",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.imslogger",
+      "app_name": "ImsLogger",
+      "version_name": "2.1.07.0",
+      "version_code": 210700000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.rosan.dhizuku.api.xposed",
+      "app_name": "DAX",
+      "version_name": "1.7.0",
+      "version_code": 8,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.keychain",
+      "app_name": "Key Chain",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.phone.auto_generated_characteristics_rro",
+      "app_name": "com.android.phone.auto_generated_characteristics_rro",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.privateaccesstokens",
+      "app_name": "Automatic verification",
+      "version_name": "1.1.05.0",
+      "version_code": 110500000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.chrome",
+      "app_name": "Chrome Beta",
+      "version_name": "156.0.8078.25",
+      "version_code": 807802514,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.healthfitness.forframework",
+      "app_name": "com.google.android.overlay.modules.healthfitness.forframework",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.themecenter",
+      "app_name": "Galaxy Themes Service",
+      "version_name": "16.0.0.0",
+      "version_code": 16000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.server.wifi.mobilewips",
+      "app_name": "MobileWips",
+      "version_name": "1.8.01.3",
+      "version_code": 180103200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.packageinstaller",
+      "app_name": "Package installer",
+      "version_name": "16-14547281",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.gms",
+      "app_name": "Google Play services",
+      "version_name": "26.40.31 (260400-995469852)",
+      "version_code": 264031035,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.gsf",
+      "app_name": "Google Services Framework",
+      "version_name": "16-14848146",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.tts",
+      "app_name": "Speech Recognition and Synthesis from Google",
+      "version_name": "googletts.google-speech-apk_20260914.02_p2.986315744",
+      "version_code": 210683481,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "android.autoinstalls.config.samsung",
+      "app_name": "ConfigAPK",
+      "version_name": "0000",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.wifi.resources",
+      "app_name": "System Wi-Fi Resources",
+      "version_name": "R-initial",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.container",
+      "app_name": "ContainerService",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.calllogbackup",
+      "app_name": "Call Log Backup\/Restore",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.partnersetup",
+      "app_name": "Google Partner Setup",
+      "version_name": "100.966231907",
+      "version_code": 17309,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.cameraextensions",
+      "app_name": "CameraExtensionsProxy",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.diagmonagent",
+      "app_name": "DiagMonAgent",
+      "version_name": "9.7.03",
+      "version_code": 970301000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.localtransport",
+      "app_name": "com.android.localtransport",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.gmsconfig.asi",
+      "app_name": "com.google.android.overlay.gmsconfig.asi",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.gmsconfig.gsa",
+      "app_name": "com.google.android.overlay.gmsconfig.gsa",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.biometrics.app.setting",
+      "app_name": "Biometrics",
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.smartface.overlay",
+      "app_name": "com.samsung.android.smartface.overlay",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.spp.push",
+      "app_name": "Samsung Push Service",
+      "version_name": "3.4.27.0",
+      "version_code": 342700200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.carrierdefaultapp",
+      "app_name": "Carrier Communications",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.credentialmanager",
+      "app_name": "Credential Manager",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.aremojieditor",
+      "app_name": "Avatar Editor",
+      "version_name": "8.5.01.4",
+      "version_code": 850104011,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.theme.font.notoserifsource",
+      "app_name": "Noto Serif \/ Source Sans Pro",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.myfiles",
+      "app_name": "My Files",
+      "version_name": "15.4.09.5",
+      "version_code": 1540905000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.mediatek.FrameworkResOverlayExt",
+      "app_name": "com.mediatek.FrameworkResOverlayExt",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.proxyhandler",
+      "app_name": "ProxyHandler",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.safetycenter.resources",
+      "app_name": "Google Safety Center Resources",
+      "version_name": "33 system image",
+      "version_code": 339999900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.display.cutout.emulation.waterfall",
+      "app_name": "Waterfall cutout",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.intentresolver",
+      "app_name": "IntentResolver",
+      "version_name": "2021-11",
+      "version_code": 0,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.routines",
+      "app_name": "Modes and Routines",
+      "version_name": "5.0.03.23",
+      "version_code": 500323000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.systemui.navbar.transparent",
+      "app_name": "Transparent navigation bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.mimage.photoretouching",
+      "app_name": "Photo Editor",
+      "version_name": "3.8.24.16",
+      "version_code": 382416010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.launcher",
+      "app_name": "One UI Home",
+      "version_name": "17.5.05.33",
+      "version_code": 1750505033,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.contactkeys",
+      "app_name": "ContactsKeys Storage",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.connectivity.resources",
+      "app_name": "System Connectivity Resources",
+      "version_name": "S-initial",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.permissioncontroller.forframework",
+      "app_name": "com.google.android.overlay.modules.permissioncontroller.forframework",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.feedback",
+      "app_name": "Market Feedback Agent",
+      "version_name": "16-13928101",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.printservice.recommendation",
+      "app_name": "Print Service Recommendation Service",
+      "version_name": "1.3.0",
+      "version_code": 4,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.sec.android.teegris.tui_service",
+      "app_name": "TEEgrisTuiService",
+      "version_name": "2.0",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "zed.rainxch.githubstore",
+      "app_name": "Komi Store",
+      "version_name": "1.9.2",
+      "version_code": 21,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.syncadapters.calendar",
+      "app_name": "Google Calendar Sync",
+      "version_name": "2025.10.0-735189449-release",
+      "version_code": 2017706991,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.managedprovisioning",
+      "app_name": "Work Setup",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.setting.multisound",
+      "app_name": "Separate app sound",
+      "version_name": "8.0.00.29",
+      "version_code": 800029000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.authfw",
+      "app_name": "Authentication Framework",
+      "version_name": "5.2.10.3",
+      "version_code": 521003000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.googlelpaoverlay",
+      "app_name": "com.sec.android.app.googlelpaoverlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wallpaper.live",
+      "app_name": "Samsung Wallpaper",
+      "version_name": "2.6.74.0",
+      "version_code": 267400000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.documentsui",
+      "app_name": "Files",
+      "version_name": "16",
+      "version_code": 361154160,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.ConnectivityUxOverlay",
+      "app_name": "ConnectivityUxOverlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.dreams.phototable",
+      "app_name": "Photo Screensavers",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.mediatek.MtkSettingsResOverlay",
+      "app_name": "com.mediatek.MtkSettingsResOverlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.mainline.telemetry",
+      "app_name": "Support components",
+      "version_name": "2026-08-01S+",
+      "version_code": 372059000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.safetyinformation",
+      "app_name": "Safety information",
+      "version_name": "3.0.63.0",
+      "version_code": 306300100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.dialer",
+      "app_name": "Phone",
+      "version_name": "16.2.00.91",
+      "version_code": 1620091000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.wifi.h2e.resources",
+      "app_name": "com.samsung.android.wifi.h2e.resources",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.dqagent",
+      "app_name": "DQA",
+      "version_name": "3.7.07",
+      "version_code": 370700000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.messageguardsync",
+      "app_name": "Message Guard Sync",
+      "version_name": "1.0.19",
+      "version_code": 101900000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.game.gos",
+      "app_name": "Game Optimizing Service",
+      "version_name": "4.3.00.38",
+      "version_code": 430000038,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.devicediagnostics",
+      "app_name": "DeviceDiagnostics",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.forest",
+      "app_name": "Digital Wellbeing",
+      "version_name": "6.1.02.71",
+      "version_code": 610200071,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.partnerbookmarks",
+      "app_name": "com.android.providers.partnerbookmarks",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.hdmapp",
+      "app_name": "HdmApp",
+      "version_name": "2.2.02.2",
+      "version_code": 220202110,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.role.notes.enabled",
+      "app_name": "Notes Role enabled",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.internal.overlay.config.default_contextual_search",
+      "app_name": "com.samsung.android.internal.overlay.config.default_contextual_search",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.wallpaper.livepicker",
+      "app_name": "Live Wallpaper Picker",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.beaconmanager",
+      "app_name": "Nearby device scanning agent",
+      "version_name": "11.2.06.3",
+      "version_code": 1120603000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.internal.systemui.navbar.gestural_no_hint",
+      "app_name": "Gestural Navigation Bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.apps.tag",
+      "app_name": "Tags",
+      "version_name": "4.3.07",
+      "version_code": 430700100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.mainline.adservices",
+      "app_name": "Main components",
+      "version_name": "2026-08-01T+",
+      "version_code": 372057000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.callassistant",
+      "app_name": "Call Services",
+      "version_name": "17.6.00.120",
+      "version_code": 1760000120,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.ConnectivityOverlay",
+      "app_name": "ConnectivityOverlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.stickercenter",
+      "app_name": "Sticker Center",
+      "version_name": "2.7.03.39",
+      "version_code": 270339100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.facebook.system",
+      "app_name": "Meta App Installer",
+      "version_name": "130.0.18",
+      "version_code": 884407272,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.providers.media",
+      "app_name": "Samsung Media Storage",
+      "version_name": "16.1.28.0",
+      "version_code": 1612800000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.popupcalculator",
+      "app_name": "Calculator",
+      "version_name": "12.5.10.28",
+      "version_code": 1251028000,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.soagent",
+      "app_name": "Software update",
+      "version_name": "7.7.01",
+      "version_code": 770101000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.providers.trash",
+      "app_name": "SecTrashProvider",
+      "version_name": "16.0.11.0",
+      "version_code": 1601100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.healthconnect.controller",
+      "app_name": "Health Connect",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.CcInfo",
+      "app_name": "CcInfo",
+      "version_name": "1.2.6",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.quicktool",
+      "app_name": "Tools",
+      "version_name": "17.5.00.10",
+      "version_code": 1750000010,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.fmm",
+      "app_name": "Find My Mobile",
+      "version_name": "7.3.22.30",
+      "version_code": 732230100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.gru",
+      "app_name": "Galaxy Resource Updater",
+      "version_name": "1.4.23.0",
+      "version_code": 142300000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mdm",
+      "app_name": "Knox Core Service",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mtp",
+      "app_name": "MTP application",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.nfc",
+      "app_name": "NFC",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.scs",
+      "app_name": "Samsung Core Services",
+      "version_name": "5.5.01.6",
+      "version_code": 550106200,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.unifiedwfc",
+      "app_name": "Wi-Fi Calling",
+      "version_name": "8.4.07.23",
+      "version_code": 840723100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.phone",
+      "app_name": "com.sec.phone",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.audiomirroring",
+      "app_name": "AudioMirroring",
+      "version_name": "4.0.00.24",
+      "version_code": 400000024,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.appseparation",
+      "app_name": "Separated Apps",
+      "version_name": "3.2.15.4",
+      "version_code": 321500004,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.gms.supervision",
+      "app_name": "System parental controls",
+      "version_name": "1.0.800961816.phone",
+      "version_code": 80206,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.updatecenter",
+      "app_name": "App update",
+      "version_name": "3.9.06",
+      "version_code": 390600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.honeyboard",
+      "app_name": "Samsung Keyboard",
+      "version_name": "5.9.30.97",
+      "version_code": 593097300,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.samsungpass",
+      "app_name": "Samsung Pass",
+      "version_name": "5.2.10.10",
+      "version_code": 521010900,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.sandbox",
+      "app_name": "KnoxSandbox",
+      "version_name": "1.2.00",
+      "version_code": 120000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.storagemanager",
+      "app_name": "Storage Manager",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.scloud",
+      "app_name": "Samsung Cloud",
+      "version_name": "5.7.07.9",
+      "version_code": 570709000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.soundpicker",
+      "app_name": "Sound picker",
+      "version_name": "10.0.16.63",
+      "version_code": 1001600063,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.sharelive",
+      "app_name": "Quick Share",
+      "version_name": "13.8.53.20",
+      "version_code": 1385320205,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.app.RilErrorNotifier",
+      "app_name": "RilNotifier",
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.spayfw",
+      "app_name": "Samsung Pay Framework",
+      "version_name": "16.5.41",
+      "version_code": 1654101800,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.bookmarkprovider",
+      "app_name": "Bookmark Provider",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.settings",
+      "app_name": "Settings",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.widget.pictureframe",
+      "app_name": "Gallery",
+      "version_name": "8.1.00.35",
+      "version_code": 810000035,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.app.newtrim",
+      "app_name": "Editor Lite",
+      "version_name": "4.0.85.20",
+      "version_code": 408520000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.dbsc",
+      "app_name": "Galaxy Service Setup",
+      "version_name": "1.0.00.40",
+      "version_code": 100000040,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.dsms",
+      "app_name": "Dsms",
+      "version_name": "2.0.26",
+      "version_code": 202600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.fast",
+      "app_name": "Secure Wi-Fi",
+      "version_name": "9.8.11.4",
+      "version_code": 981100004,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.lool",
+      "app_name": "Device care",
+      "version_name": "13.8.82.1",
+      "version_code": 1388201000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.scpm",
+      "app_name": "Samsung Cloud Assistant",
+      "version_name": "9.0.07.2",
+      "version_code": 900702000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.sdhms",
+      "app_name": "Samsung Device Health Manager Service",
+      "version_name": "1.0.0",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.settingshelper",
+      "app_name": "SettingsHelper",
+      "version_name": "1.0.25.0",
+      "version_code": 102500000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.mimage.avatarstickers",
+      "app_name": "Avatar Stickers",
+      "version_name": "8.5.01.4",
+      "version_code": 850104001,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.knox.analytics.uploader",
+      "app_name": "Knox Analytics Uploader",
+      "version_name": "2.0.01.0",
+      "version_code": 200100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.captiveportallogin.forframework",
+      "app_name": "com.google.android.overlay.modules.captiveportallogin.forframework",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.emergencylauncher",
+      "app_name": "Launcher",
+      "version_name": "8.0.00.11",
+      "version_code": 800011000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.projection.gearhead",
+      "app_name": "Android Auto",
+      "version_name": "17.8.663874-release",
+      "version_code": 178663874,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.hearingadjust",
+      "app_name": "Adapt sound",
+      "version_name": "16.1.21",
+      "version_code": 1612100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.easyMover",
+      "app_name": "Smart Switch",
+      "version_name": "3.7.73.4",
+      "version_code": 377304130,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.turbo",
+      "app_name": "Device Health Services",
+      "version_name": "1.27.0.800299854.android",
+      "version_code": 10271581,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.bluelightfilter",
+      "app_name": "Eye comfort shield",
+      "version_name": "5.4.0",
+      "version_code": 5,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.bbc.bbcagent",
+      "app_name": "BBCAgent",
+      "version_name": "5.0.02.0",
+      "version_code": 500200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.earphonetypec",
+      "app_name": "Samsung USB-C headset",
+      "version_name": "1.2.62",
+      "version_code": 126200100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.singletake.service",
+      "app_name": "Single take",
+      "version_name": "6.2.00.30",
+      "version_code": 620030100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.safetycore",
+      "app_name": "Android System SafetyCore",
+      "version_name": "1.0.989369273",
+      "version_code": 28110,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.callbgprovider",
+      "app_name": "CallBGProvider",
+      "version_name": "17.0.00.3",
+      "version_code": 1700003000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.qsfastpairoverlay",
+      "app_name": "com.sec.android.app.qsfastpairoverlay",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.knox.vpn.proxyhandler",
+      "app_name": "KnoxVpnPacProcessor",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.bintianqi.owndroid",
+      "app_name": "OwnDroid",
+      "version_name": "8.3.1",
+      "version_code": 47,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.cts.ctsshim",
+      "app_name": "com.android.cts.ctsshim",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.oda.service",
+      "app_name": "SamsungOdaService",
+      "version_name": "5.1.00.64",
+      "version_code": 510002064,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.watchmanagerstub",
+      "app_name": "Wearable Manager Installer",
+      "version_name": "2.1.01.26001",
+      "version_code": 210126001,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.svcagent",
+      "app_name": "SVC Agent",
+      "version_name": "7.2.01.7",
+      "version_code": 720107100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.modulemetadata.forframework",
+      "app_name": "com.google.android.overlay.modules.modulemetadata.forframework",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.mhs.smarttethering",
+      "app_name": "Auto Hotspot",
+      "version_name": "1.2.64.0",
+      "version_code": 126400000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.networkdiagnostic",
+      "app_name": "NetworkDiagnostic",
+      "version_name": "2.5.07.3",
+      "version_code": 250703100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.shortcutbackupservice",
+      "app_name": "ShortcutBNR",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "lsafer.edgeseek",
+      "app_name": "Edge Seek",
+      "version_name": "0.3-pre.7",
+      "version_code": 21,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mcfserver",
+      "app_name": "Samsung Multi Connectivity",
+      "version_name": "2.0.02.16",
+      "version_code": 200216000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.vpndialogs",
+      "app_name": "VpnDialogs",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.InputEventApp",
+      "app_name": "com.samsung.InputEventApp",
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.networkstack.tethering.overlay",
+      "app_name": "com.samsung.android.networkstack.tethering.overlay",
+      "version_name": "13",
+      "version_code": 33,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.nfc.resources.usa",
+      "app_name": "com.samsung.android.nfc.resources.usa",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.facatfunction",
+      "app_name": "FacAtFunction",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.providers.contacts",
+      "app_name": "Contacts Storage",
+      "version_name": "15.8.31",
+      "version_code": 1583100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.phone",
+      "app_name": "Phone services",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.shell",
+      "app_name": "Shell",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.wallpaperbackup",
+      "app_name": "com.android.wallpaperbackup",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.blockednumber",
+      "app_name": "Blocked Numbers Storage",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.omcagent",
+      "app_name": "Recommended apps",
+      "version_name": "5.9.23",
+      "version_code": 592300000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.hiya.star",
+      "app_name": "Hiya Service",
+      "version_name": "3.8.3-samsung-3711",
+      "version_code": 30803,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.cellbroadcastservice",
+      "app_name": "com.google.android.overlay.modules.cellbroadcastservice",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.work.clouddpc",
+      "app_name": "Device Policy",
+      "version_name": "166.38.0 (10864560)",
+      "version_code": 10864560,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.providers.userdictionary",
+      "app_name": "User Dictionary",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.carrier.carrierwifi",
+      "app_name": "Google Wi-Fi Provisioner",
+      "version_name": "1.7.0.990752959",
+      "version_code": 194,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.wssyncmldm",
+      "app_name": "Software update",
+      "version_name": "4.5.18",
+      "version_code": 451800000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.hotspot2.osulogin",
+      "app_name": "OsuLogin",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.companiondevicemanager.auto_generated_characteristics_rro",
+      "app_name": "com.android.companiondevicemanager.auto_generated_characteristics_rro",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.gms.location.history",
+      "app_name": "Google Location History",
+      "version_name": "1.2",
+      "version_code": 3,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.internal.systemui.navbar.gestural",
+      "app_name": "Gestural Navigation Bar",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.location.fused",
+      "app_name": "Fused Location",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.overlay.modules.mediaprovider",
+      "app_name": "com.google.android.overlay.modules.mediaprovider",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.samsungpassautofill",
+      "app_name": "Autofill with Samsung Pass",
+      "version_name": "5.2.11.1",
+      "version_code": 521101000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.epdg",
+      "app_name": "com.sec.epdg",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.systemui",
+      "app_name": "System UI",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.personalization",
+      "app_name": "Perso",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.ondevicepersonalization.services",
+      "app_name": "com.android.ondevicepersonalization.services.OnDevicePersonalizationApplication",
+      "version_name": "17",
+      "version_code": 371899999,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.sait.sohservice",
+      "app_name": "SoHService",
+      "version_name": "3.3.0",
+      "version_code": 20260114,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.bluetoothmidiservice",
+      "app_name": "Bluetooth MIDI Service",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.sdk.handwriting",
+      "app_name": "HandwritingService",
+      "version_name": "2.5.03.6",
+      "version_code": 250306000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.facebook.appmanager",
+      "app_name": "Meta App Manager",
+      "version_name": "130.0.18",
+      "version_code": 884408326,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.clockpack",
+      "app_name": "Clock style",
+      "version_name": "8.9.32.92",
+      "version_code": 893292100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.aasaservice",
+      "app_name": "SecurityPolicy",
+      "version_name": "2.2.20.0",
+      "version_code": 222000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.setupwizard",
+      "app_name": "Setup Wizard",
+      "version_name": "16.5.25",
+      "version_code": 1652500000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.traceur",
+      "app_name": "System Tracing",
+      "version_name": "1.0",
+      "version_code": 2,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.cellbroadcastreceiver",
+      "app_name": "Wireless Emergency Alerts",
+      "version_name": "R-initial",
+      "version_code": 300000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.allshare.service.mediashare",
+      "app_name": "Nearby Service",
+      "version_name": "3.3.21.8",
+      "version_code": 332108100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.providers.factory",
+      "app_name": "FactoryTestProvider",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "android.auto_generated_rro_product__",
+      "app_name": "android.auto_generated_rro_product__",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.camera",
+      "app_name": "Camera",
+      "version_name": "16.5.02.40",
+      "version_code": 1650240100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.snap.camerakit.plugin.v1",
+      "app_name": "CameraKit Plugin",
+      "version_name": "1.45.1",
+      "version_code": 210145001,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.android.bluetooth",
+      "app_name": "Bluetooth",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.clipboardedge",
+      "app_name": "Clipboard edge",
+      "version_name": "5.4.02",
+      "version_code": 540200000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.ipservice",
+      "app_name": "IPService",
+      "version_name": "11.5.21",
+      "version_code": 1152100000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.android.app.magnifier",
+      "app_name": "Magnifier",
+      "version_name": "16.0.16",
+      "version_code": 1601600000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.sec.android.application.csc",
+      "app_name": "CSC",
+      "version_name": "1.0.1.0",
+      "version_code": 100,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.monotype.android.font.roboto",
+      "app_name": "Roboto",
+      "version_name": "3.5.00.0",
+      "version_code": 350000000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.sdm.config",
+      "app_name": "Service provider setup",
+      "version_name": "4.9.09",
+      "version_code": 490900000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.sec.hiddenmenu",
+      "app_name": "IOTHiddenMenu",
+      "version_name": "16",
+      "version_code": 36,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "top.nkbe.npatch",
+      "app_name": "NPatch",
+      "version_name": "1.0.9",
+      "version_code": 833,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.dressroom",
+      "app_name": "Wallpaper and style",
+      "version_name": "2.9.60.47",
+      "version_code": 296047000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "io.github.samolego.canta",
+      "app_name": "Canta",
+      "version_name": "4.0.0",
+      "version_code": 226,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.app.dofviewer",
+      "app_name": "Portrait",
+      "version_name": "11.0.25",
+      "version_code": 1102500000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.photopicker",
+      "app_name": "Photos & videos",
+      "version_name": "17",
+      "version_code": 37,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.mcfds",
+      "app_name": "Continuity Service",
+      "version_name": "4.6.12.16",
+      "version_code": 461216000,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.samsung.android.video",
+      "app_name": "Video Player",
+      "version_name": "7.3.51.34",
+      "version_code": 735110034,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "android.auto_generated_rro_vendor__",
+      "app_name": "android.auto_generated_rro_vendor__",
+      "version_name": "1.0",
+      "version_code": 1,
+      "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "com.google.android.apps.restore",
+      "app_name": "Android Switch",
+      "version_name": "1.0.986656986",
+      "version_code": 1140078,
+      "is_system_app": true,
+      "is_hidden": false
+    }
+  ]
 }
