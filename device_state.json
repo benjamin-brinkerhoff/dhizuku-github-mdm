@@ -2,11 +2,11 @@
   "device_model": "samsung SM-A156U1",
   "android_version": "16",
   "sdk_int": 36,
-  "last_sync": "2026-10-14T15:49:40Z",
-  "battery_percent": 36,
+  "last_sync": "2026-10-14T15:53:56Z",
+  "battery_percent": 35,
   "is_charging": false,
   "dhizuku_active": true,
-  "installed_apps_count": 439,
+  "installed_apps_count": 442,
   "installed_apps": [
     {
       "package_name": "com.google.android.networkstack.tethering",
@@ -1329,6 +1329,14 @@
       "is_hidden": false
     },
     {
+      "package_name": "com.orion.store",
+      "app_name": "Orion Store",
+      "version_name": "2.0.5",
+      "version_code": 25,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
       "package_name": "com.google.android.apps.tachyon",
       "app_name": "Meet",
       "version_name": "379.0.989469524.duo.android_20260928.02_p0.s",
@@ -1697,6 +1705,14 @@
       "is_hidden": false
     },
     {
+      "package_name": "app.morphe.android.youtube",
+      "app_name": "YouTube Morphe",
+      "version_name": "21.20.405",
+      "version_code": 1561173354,
+      "is_system_app": false,
+      "is_hidden": false
+    },
+    {
       "package_name": "com.google.android.appsearch.apk",
       "app_name": "com.google.android.appsearch.apk",
       "version_name": "17",
@@ -2006,6 +2022,14 @@
       "version_name": "16",
       "version_code": 36,
       "is_system_app": true,
+      "is_hidden": false
+    },
+    {
+      "package_name": "app.revanced.android.gms",
+      "app_name": "MicroG RE",
+      "version_name": "7.2.2-dev.2",
+      "version_code": 255070222,
+      "is_system_app": false,
       "is_hidden": false
     },
     {
