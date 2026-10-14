@@ -1,0 +1,11 @@
+{
+  "device_model": "Android Device",
+  "android_version": "14",
+  "sdk_int": 34,
+  "last_sync": "2026-10-14T14:48:00Z",
+  "battery_percent": 100,
+  "is_charging": false,
+  "dhizuku_active": true,
+  "installed_apps_count": 0,
+  "installed_apps": []
+}
