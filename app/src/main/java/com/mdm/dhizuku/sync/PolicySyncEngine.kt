@@ -104,13 +104,21 @@ object PolicySyncEngine {
                 appendLog(context, "Kiosk config error: ${it.message}")
             }
 
+            // Check & execute silent APK installs
             for (apkSpec in manifest.installApks) {
                 val installedVer = getInstalledVersionCode(context, apkSpec.packageName)
                 if (installedVer < apkSpec.versionCode) {
                     appendLog(context, "Downloading APK ${apkSpec.packageName} v${apkSpec.versionCode}...")
                     runCatching {
                         val tempApk = File(context.cacheDir, "${apkSpec.packageName}.apk")
-                        URL(apkSpec.apkUrl).openStream().use { input ->
+                        val apkConn = (URL(apkSpec.apkUrl).openConnection() as HttpURLConnection).apply {
+                            connectTimeout = 20_000
+                            readTimeout = 30_000
+                            if (token.isNotEmpty()) {
+                                setRequestProperty("Authorization", "Bearer $token")
+                            }
+                        }
+                        apkConn.inputStream.use { input ->
                             tempApk.outputStream().use { output -> input.copyTo(output) }
                         }
                         DhizukuBridge.installApkSilently(context, tempApk, apkSpec.packageName).getOrThrow()
@@ -118,6 +126,15 @@ object PolicySyncEngine {
                     }.onFailure {
                         appendLog(context, "Silent install failed for ${apkSpec.packageName}: ${it.message}")
                     }
+                }
+            }
+
+            // Check & execute silent app uninstalls
+            for (pkg in manifest.uninstallApps) {
+                if (getInstalledVersionCode(context, pkg) >= 0L) {
+                    DhizukuBridge.uninstallPackageSilently(context, pkg)
+                        .onSuccess { appendLog(context, "Committed silent uninstall for $pkg") }
+                        .onFailure { appendLog(context, "Silent uninstall failed for $pkg: ${it.message}") }
                 }
             }
 
@@ -137,7 +154,7 @@ object PolicySyncEngine {
 
             appendLog(
                 context,
-                "Synced policy v${manifest.policyVersion} (${targetHidden.size} hidden, ${manifest.userRestrictions.count { it.value }} restrictions active)"
+                "Synced policy v${manifest.policyVersion} (${targetHidden.size} hidden, ${manifest.uninstallApps.size} uninstalls, ${manifest.installApks.size} installs)"
             )
             manifest
         }.onFailure {
