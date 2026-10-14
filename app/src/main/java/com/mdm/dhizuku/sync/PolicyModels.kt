@@ -25,6 +25,7 @@ data class MdmPolicyManifest(
     val updatedAt: String,
     val hideApps: List<String>,
     val unhideApps: List<String>,
+    val uninstallApps: List<String>,
     val userRestrictions: Map<String, Boolean>,
     val kiosk: KioskPolicySpec,
     val installApks: List<ApkInstallSpec>,
@@ -51,6 +52,15 @@ data class MdmPolicyManifest(
                 for (i in 0 until unhideArr.length()) {
                     val pkg = unhideArr.optString(i).trim()
                     if (pkg.isNotEmpty()) unhideApps.add(pkg)
+                }
+            }
+
+            val uninstallApps = mutableListOf<String>()
+            val uninstallArr = root.optJSONArray("uninstall_apps")
+            if (uninstallArr != null) {
+                for (i in 0 until uninstallArr.length()) {
+                    val pkg = uninstallArr.optString(i).trim()
+                    if (pkg.isNotEmpty()) uninstallApps.add(pkg)
                 }
             }
 
@@ -116,6 +126,7 @@ data class MdmPolicyManifest(
                 updatedAt = updatedAt,
                 hideApps = hideApps,
                 unhideApps = unhideApps,
+                uninstallApps = uninstallApps,
                 userRestrictions = restrictions,
                 kiosk = KioskPolicySpec(kioskEnabled, kioskPackages, kioskFeatures),
                 installApks = apks,
