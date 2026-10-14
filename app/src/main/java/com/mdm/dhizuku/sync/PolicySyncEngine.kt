@@ -8,6 +8,7 @@ import com.mdm.dhizuku.updater.SelfUpdateManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -50,7 +51,7 @@ object PolicySyncEngine {
                 connectTimeout = 12_000
                 readTimeout = 12_000
                 setRequestProperty("Cache-Control", "no-cache")
-                if (token.isNotEmpty()) {
+                if (token.isNotEmpty() && requestUrl.contains("api.github.com")) {
                     setRequestProperty("Authorization", "Bearer $token")
                 }
             }
@@ -105,23 +106,28 @@ object PolicySyncEngine {
                 appendLog(context, "Kiosk config error: ${it.message}")
             }
 
-            // Check & execute silent third-party APK installs
+            // Check & execute silent third-party APK installs (supports single URL, GitHub Release URL, or multi-part chunked URLs)
             for (apkSpec in manifest.installApks) {
                 val installedVer = getInstalledVersionCode(context, apkSpec.packageName)
                 if (installedVer < apkSpec.versionCode) {
-                    appendLog(context, "Downloading APK ${apkSpec.packageName} v${apkSpec.versionCode}...")
+                    val parts = if (apkSpec.apkUrls.isNotEmpty()) apkSpec.apkUrls else listOf(apkSpec.apkUrl)
+                    appendLog(
+                        context,
+                        "Downloading APK ${apkSpec.packageName} v${apkSpec.versionCode} (${parts.size} part(s))..."
+                    )
                     runCatching {
                         val tempApk = File(context.cacheDir, "${apkSpec.packageName}.apk")
-                        val apkConn = (URL(apkSpec.apkUrl).openConnection() as HttpURLConnection).apply {
-                            connectTimeout = 20_000
-                            readTimeout = 30_000
-                            if (token.isNotEmpty()) {
-                                setRequestProperty("Authorization", "Bearer $token")
+                        if (tempApk.exists()) tempApk.delete()
+
+                        FileOutputStream(tempApk, false).use { output ->
+                            for ((idx, partUrl) in parts.withIndex()) {
+                                if (parts.size > 1) {
+                                    appendLog(context, "Downloading ${apkSpec.packageName} chunk ${idx + 1}/${parts.size}...")
+                                }
+                                downloadUrlToStream(partUrl, token, output)
                             }
                         }
-                        apkConn.inputStream.use { input ->
-                            tempApk.outputStream().use { output -> input.copyTo(output) }
-                        }
+
                         DhizukuBridge.installApkSilently(context, tempApk, apkSpec.packageName).getOrThrow()
                         appendLog(context, "Committed silent install for ${apkSpec.packageName}")
                     }.onFailure {
@@ -167,6 +173,24 @@ object PolicySyncEngine {
             manifest
         }.onFailure {
             appendLog(context, "Sync failed: ${it.message}")
+        }
+    }
+
+    private fun downloadUrlToStream(urlString: String, token: String, output: FileOutputStream) {
+        val conn = (URL(urlString).openConnection() as HttpURLConnection).apply {
+            instanceFollowRedirects = true
+            connectTimeout = 25_000
+            readTimeout = 60_000
+            if (token.isNotEmpty() && urlString.contains("api.github.com")) {
+                setRequestProperty("Authorization", "Bearer $token")
+            }
+        }
+        val code = conn.responseCode
+        if (code !in 200..299) {
+            error("HTTP $code downloading $urlString")
+        }
+        conn.inputStream.use { input ->
+            input.copyTo(output)
         }
     }
 
