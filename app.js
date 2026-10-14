@@ -27,6 +27,7 @@ const DEFAULT_POLICY = {
   }
 };
 
+const VAULT_STORAGE_KEY = "dhizuku_mdm_encrypted_vault";
 let state = structuredClone(DEFAULT_POLICY);
 let installedApps = [];
 
@@ -37,22 +38,202 @@ const elToken = document.getElementById("ghToken");
 const elStatus = document.getElementById("statusBanner");
 const elJson = document.getElementById("jsonPreview");
 
+const lockOverlay = document.getElementById("lockScreenOverlay");
+const consoleWrapper = document.getElementById("consoleWrapper");
+const lockOwner = document.getElementById("lockOwner");
+const lockRepo = document.getElementById("lockRepo");
+const lockPassword = document.getElementById("lockPassword");
+const lockPat = document.getElementById("lockPat");
+const patSetupRow = document.getElementById("patSetupRow");
+const lockError = document.getElementById("lockError");
+
 function setStatus(msg, isError = false) {
   elStatus.textContent = msg;
   elStatus.style.borderLeftColor = isError ? "#ef4444" : "#38bdf8";
 }
 
-function loadSavedAuth() {
-  const savedToken = localStorage.getItem("dhizuku_mdm_pat");
-  const savedOwner = localStorage.getItem("dhizuku_mdm_owner");
-  const savedRepo = localStorage.getItem("dhizuku_mdm_repo");
-  if (savedToken) elToken.value = savedToken;
-  if (savedOwner) elOwner.value = savedOwner;
-  if (savedRepo) elRepo.value = savedRepo;
+function showLockError(msg) {
+  if (!lockError) return;
+  lockError.textContent = msg;
+  lockError.classList.remove("hidden");
 }
 
+function clearLockError() {
+  if (!lockError) return;
+  lockError.textContent = "";
+  lockError.classList.add("hidden");
+}
+
+// Web Crypto AES-GCM helpers to encrypt the GitHub PAT with the user's Console Password
+async function deriveKey(password, saltBytes) {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(password),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: saltBytes,
+      iterations: 100000,
+      hash: "SHA-256"
+    },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+async function encryptTokenWithPassword(token, password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(password, salt);
+  const enc = new TextEncoder();
+  const cipherBuf = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    enc.encode(token)
+  );
+  return JSON.stringify({
+    salt: arrayBufferToBase64(salt.buffer),
+    iv: arrayBufferToBase64(iv.buffer),
+    cipher: arrayBufferToBase64(cipherBuf)
+  });
+}
+
+async function decryptTokenWithPassword(vaultJson, password) {
+  const vault = JSON.parse(vaultJson);
+  const salt = base64ToUint8Array(vault.salt);
+  const iv = base64ToUint8Array(vault.iv);
+  const cipher = base64ToUint8Array(vault.cipher);
+  const key = await deriveKey(password, salt);
+  const plainBuf = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv },
+    key,
+    cipher
+  );
+  return new TextDecoder().decode(plainBuf);
+}
+
+function base64ToUint8Array(b64) {
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    arr[i] = bin.charCodeAt(i);
+  }
+  return arr;
+}
+
+async function verifyGitHubWriteAccess(owner, repo, token) {
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`
+    }
+  });
+  if (!res.ok) {
+    throw new Error(`GitHub authentication failed (HTTP ${res.status}). Check your token.`);
+  }
+  const data = await res.json();
+  if (!data.permissions || !data.permissions.push) {
+    throw new Error(`Access Denied: This token does not have write/push permissions on ${owner}/${repo}.`);
+  }
+  return true;
+}
+
+function updateLockScreenVaultMode() {
+  localStorage.removeItem("dhizuku_mdm_pat"); // purge any legacy plaintext token
+  const savedOwner = localStorage.getItem("dhizuku_mdm_owner");
+  const savedRepo = localStorage.getItem("dhizuku_mdm_repo");
+  if (savedOwner && lockOwner) lockOwner.value = savedOwner;
+  if (savedRepo && lockRepo) lockRepo.value = savedRepo;
+
+  const hasEncryptedVault = Boolean(localStorage.getItem(VAULT_STORAGE_KEY));
+  if (patSetupRow) {
+    if (hasEncryptedVault) {
+      patSetupRow.classList.add("hidden");
+    } else {
+      patSetupRow.classList.remove("hidden");
+    }
+  }
+}
+
+document.getElementById("btnUnlockConsole")?.addEventListener("click", async () => {
+  clearLockError();
+  const owner = (lockOwner?.value || "benjamin-brinkerhoff").trim();
+  const repo = (lockRepo?.value || "dhizuku-github-mdm").trim();
+  const password = (lockPassword?.value || "").trim();
+  const newPat = (lockPat?.value || "").trim();
+  const existingVault = localStorage.getItem(VAULT_STORAGE_KEY);
+
+  const btn = document.getElementById("btnUnlockConsole");
+  btn.disabled = true;
+  btn.textContent = "Verifying Admin Credentials...";
+
+  try {
+    let resolvedToken = "";
+    if (newPat) {
+      resolvedToken = newPat;
+      await verifyGitHubWriteAccess(owner, repo, resolvedToken);
+      if (password) {
+        const encryptedVault = await encryptTokenWithPassword(resolvedToken, password);
+        localStorage.setItem(VAULT_STORAGE_KEY, encryptedVault);
+      }
+    } else if (existingVault) {
+      if (!password) {
+        throw new Error("Enter your Console Password to unlock your saved GitHub token.");
+      }
+      try {
+        resolvedToken = await decryptTokenWithPassword(existingVault, password);
+      } catch (_) {
+        throw new Error("Incorrect Console Password.");
+      }
+      await verifyGitHubWriteAccess(owner, repo, resolvedToken);
+    } else {
+      throw new Error("Enter your GitHub Personal Access Token (and a Console Password to encrypt it).");
+    }
+
+    localStorage.setItem("dhizuku_mdm_owner", owner);
+    localStorage.setItem("dhizuku_mdm_repo", repo);
+
+    elOwner.value = owner;
+    elRepo.value = repo;
+    elToken.value = resolvedToken;
+
+    lockPassword.value = "";
+    lockPat.value = "";
+
+    lockOverlay?.classList.add("hidden");
+    consoleWrapper?.classList.remove("hidden");
+
+    await fetchPolicyFromGitHub();
+  } catch (err) {
+    showLockError(err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Verify Admin Access & Unlock Console";
+  }
+});
+
+document.getElementById("btnClearSavedVault")?.addEventListener("click", () => {
+  localStorage.removeItem(VAULT_STORAGE_KEY);
+  localStorage.removeItem("dhizuku_mdm_pat");
+  if (patSetupRow) patSetupRow.classList.remove("hidden");
+  clearLockError();
+});
+
+document.getElementById("btnLockConsole")?.addEventListener("click", () => {
+  elToken.value = "";
+  consoleWrapper?.classList.add("hidden");
+  lockOverlay?.classList.remove("hidden");
+  updateLockScreenVaultMode();
+});
+
 function saveAuth() {
-  localStorage.setItem("dhizuku_mdm_pat", elToken.value.trim());
   localStorage.setItem("dhizuku_mdm_owner", elOwner.value.trim());
   localStorage.setItem("dhizuku_mdm_repo", elRepo.value.trim());
 }
@@ -263,7 +444,7 @@ document.getElementById("btnUploadApkFile").addEventListener("click", async () =
   const file = fileInput.files && fileInput.files[0];
 
   if (!token) {
-    setStatus("Enter your GitHub PAT first so the browser can upload the .apk file to your repository.", true);
+    setStatus("Unlock the console with your GitHub PAT first.", true);
     return;
   }
   if (!pkg) {
@@ -501,7 +682,7 @@ async function commitPolicyToGitHub() {
   const branch = elBranch.value.trim() || "main";
   const token = elToken.value.trim();
   if (!token) {
-    setStatus("Please enter a GitHub Personal Access Token (PAT) with Contents Read/Write permission to commit changes.", true);
+    setStatus("Please unlock the console with your GitHub PAT to commit changes.", true);
     return;
   }
   try {
@@ -522,6 +703,4 @@ async function commitPolicyToGitHub() {
 
 document.getElementById("btnLoadPolicy").addEventListener("click", fetchPolicyFromGitHub);
 document.getElementById("btnCommitPolicy").addEventListener("click", commitPolicyToGitHub);
-loadSavedAuth();
-renderStateToUI();
-fetchPolicyFromGitHub();
+updateLockScreenVaultMode();
