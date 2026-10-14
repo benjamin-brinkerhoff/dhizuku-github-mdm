@@ -20,6 +20,15 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtAppVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Installed Version: 1.0.0"
+            android:textColor="#94A3B8"
+            android:textSize="12sp" />
+
+        <TextView
             android:id="@+id/txtDhizukuStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Optional GitHub PAT (only needed if repo is private)"
+            android:text="GitHub Personal Access Token (for policy sync &amp; auto-updater)"
             android:textColor="#94A3B8"
             android:textSize="13sp" />
 
@@ -85,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:hint="ghp_... (optional)"
+            android:hint="ghp_... or github_pat_..."
             android:inputType="textPassword"
             android:textColor="#E2E8F0"
             android:textColorHint="#64748B"
@@ -97,6 +106,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:text="Save &amp; Sync Policy Now" />
+
+        <Button
+            android:id="@+id/btnCheckAppUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#1E293B"
+            android:text="Check for App Self-Update Now"
+            android:textColor="#E2E8F0" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchFastPoll"
@@ -110,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="Policy Reconciliation Audit Log"
+            android:text="Policy Reconciliation &amp; Updater Audit Log"
             android:textColor="#94A3B8"
             android:textSize="13sp"
             android:textStyle="bold" />
