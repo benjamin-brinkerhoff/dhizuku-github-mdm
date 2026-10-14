@@ -133,6 +133,34 @@ object DhizukuBridge {
         }
     }
 
+    /**
+     * Returns a PackageInstaller instance whose internal mInstaller binder is wrapped with Dhizuku.
+     */
+    @SuppressLint("PrivateApi")
+    private fun getWrappedPackageInstaller(context: Context): PackageInstaller {
+        val ownerComponent = getOwnerComponent()
+            ?: error("Dhizuku owner ComponentName unavailable")
+        val dhizukuContext = runCatching {
+            context.createPackageContext(ownerComponent.packageName, Context.CONTEXT_IGNORE_SECURITY)
+        }.getOrDefault(context)
+
+        val packageInstaller = dhizukuContext.packageManager.packageInstaller
+        runCatching {
+            val mInstallerField = packageInstaller.javaClass.getDeclaredField("mInstaller")
+            mInstallerField.isAccessible = true
+            val oldInstaller = mInstallerField.get(packageInstaller)
+            if (oldInstaller != null) {
+                val oldBinder = oldInstaller.javaClass.getMethod("asBinder").invoke(oldInstaller) as IBinder
+                val wrappedBinder = Dhizuku.binderWrapper(oldBinder)
+                val stubClass = Class.forName("android.content.pm.IPackageInstaller\$Stub")
+                val newInstaller = stubClass.getMethod("asInterface", IBinder::class.java)
+                    .invoke(null, wrappedBinder)
+                mInstallerField.set(packageInstaller, newInstaller)
+            }
+        }
+        return packageInstaller
+    }
+
     fun setApplicationHidden(context: Context, packageName: String, hidden: Boolean): Result<Boolean> {
         return runCatching {
             val dpm = getDevicePolicyManager(context)
@@ -220,26 +248,7 @@ object DhizukuBridge {
     fun installApkSilently(context: Context, apkFile: File, packageName: String): Result<Unit> {
         return runCatching {
             require(apkFile.exists() && apkFile.length() > 0L) { "APK file missing or empty" }
-            val ownerComponent = getOwnerComponent()
-                ?: error("Dhizuku owner ComponentName unavailable")
-            val dhizukuContext = runCatching {
-                context.createPackageContext(ownerComponent.packageName, Context.CONTEXT_IGNORE_SECURITY)
-            }.getOrDefault(context)
-
-            val packageInstaller = dhizukuContext.packageManager.packageInstaller
-            runCatching {
-                val mInstallerField = packageInstaller.javaClass.getDeclaredField("mInstaller")
-                mInstallerField.isAccessible = true
-                val oldInstaller = mInstallerField.get(packageInstaller)
-                if (oldInstaller != null) {
-                    val oldBinder = oldInstaller.javaClass.getMethod("asBinder").invoke(oldInstaller) as IBinder
-                    val wrappedBinder = Dhizuku.binderWrapper(oldBinder)
-                    val stubClass = Class.forName("android.content.pm.IPackageInstaller\$Stub")
-                    val newInstaller = stubClass.getMethod("asInterface", IBinder::class.java)
-                        .invoke(null, wrappedBinder)
-                    mInstallerField.set(packageInstaller, newInstaller)
-                }
-            }
+            val packageInstaller = getWrappedPackageInstaller(context)
 
             val params = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL)
             params.setAppPackageName(packageName)
@@ -269,6 +278,7 @@ object DhizukuBridge {
 
             val intent = Intent(context, ApkInstallReceiver::class.java).apply {
                 putExtra("pkg", packageName)
+                putExtra("op", "install")
             }
             val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
@@ -278,6 +288,38 @@ object DhizukuBridge {
             val pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, flags)
             session.commit(pendingIntent.intentSender)
             session.close()
+        }
+    }
+
+    /**
+     * Silently uninstalls a package over the air using Dhizuku's wrapped PackageInstaller.
+     */
+    @SuppressLint("MissingPermission")
+    fun uninstallPackageSilently(context: Context, packageName: String): Result<Unit> {
+        return runCatching {
+            val dpm = getDevicePolicyManager(context)
+            val admin = getOwnerComponent()
+            if (dpm != null && admin != null) {
+                runCatching { dpm.setUninstallBlocked(admin, packageName, false) }
+            }
+
+            val packageInstaller = getWrappedPackageInstaller(context)
+            val intent = Intent(context, ApkInstallReceiver::class.java).apply {
+                putExtra("pkg", packageName)
+                putExtra("op", "uninstall")
+            }
+            val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                packageName.hashCode(),
+                intent,
+                flags
+            )
+            packageInstaller.uninstall(packageName, pendingIntent.intentSender)
         }
     }
 }
