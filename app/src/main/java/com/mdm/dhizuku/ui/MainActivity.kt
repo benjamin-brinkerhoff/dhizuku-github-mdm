@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.mdm.dhizuku.databinding.ActivityMainBinding
 import com.mdm.dhizuku.dhizuku.DhizukuBridge
 import com.mdm.dhizuku.sync.PolicySyncEngine
+import com.mdm.dhizuku.updater.SelfUpdateManager
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -52,6 +53,24 @@ class MainActivity : AppCompatActivity() {
             triggerSync()
         }
 
+        binding.btnCheckAppUpdate.setOnClickListener {
+            binding.btnCheckAppUpdate.isEnabled = false
+            lifecycleScope.launch {
+                PolicySyncEngine.appendLog(this@MainActivity, "Checking GitHub Releases for app self-update...")
+                SelfUpdateManager.checkForSelfUpdate(this@MainActivity)
+                    .onSuccess { updated ->
+                        if (!updated) {
+                            PolicySyncEngine.appendLog(this@MainActivity, "App is already on the latest build.")
+                        }
+                    }
+                    .onFailure {
+                        PolicySyncEngine.appendLog(this@MainActivity, "Update check failed: ${it.message}")
+                    }
+                binding.btnCheckAppUpdate.isEnabled = true
+                refreshUiState()
+            }
+        }
+
         binding.switchFastPoll.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 startFastPolling()
@@ -93,6 +112,10 @@ class MainActivity : AppCompatActivity() {
         val inited = DhizukuBridge.init(this)
         val granted = inited && DhizukuBridge.isPermissionGranted()
         val owner = if (granted) DhizukuBridge.getOwnerComponent()?.flattenToShortString() else null
+
+        val vCode = SelfUpdateManager.getCurrentVersionCode(this)
+        val vName = SelfUpdateManager.getCurrentVersionName(this)
+        binding.txtAppVersion.text = "Installed Version: $vName (Build #$vCode)"
 
         binding.txtDhizukuStatus.text = when {
             granted -> "Dhizuku Connected • Device Owner Delegated ($owner)"
