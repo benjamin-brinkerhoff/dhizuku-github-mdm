@@ -1,0 +1,35 @@
+{
+  "policy_version": 1,
+  "updated_at": "2026-10-14T03:50:00Z",
+  "hide_apps": [],
+  "unhide_apps": [],
+  "user_restrictions": {
+    "no_camera": false,
+    "no_usb_file_transfer": false,
+    "no_mount_physical_media": false,
+    "no_safe_boot": true,
+    "no_factory_reset": true,
+    "no_debugging_features": false,
+    "no_install_unknown_sources": false,
+    "no_add_user": true
+  },
+  "kiosk": {
+    "enabled": false,
+    "lock_task_packages": [
+      "com.mdm.dhizuku",
+      "org.lds.ldssa"
+    ],
+    "lock_task_features": [
+      "system_info",
+      "notifications",
+      "home",
+      "global_actions"
+    ]
+  },
+  "install_apks": [],
+  "remote_commands": {
+    "command_id": "init-001",
+    "lock_now": false,
+    "reboot": false
+  }
+}
