@@ -22,6 +22,48 @@ body {
   line-height: 1.5;
   padding-bottom: 3rem;
 }
+.hidden {
+  display: none !important;
+}
+.lock-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #131b2e 0%, #070a12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 100;
+}
+.lock-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+.lock-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.grid-2-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.lock-error {
+  margin-top: 0.85rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid var(--danger);
+  color: #fca5a5;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
 .topbar {
   display: flex;
   justify-content: space-between;
