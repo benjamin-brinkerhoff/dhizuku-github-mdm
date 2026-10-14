@@ -16,14 +16,16 @@
       </div>
     </div>
     <div class="actions">
-      <button id="btnLoadPolicy" class="btn btn-secondary">Load Live Policy</button>
+      <button id="btnLoadPolicy" class="btn btn-secondary">Load Live Policy &amp; Apps</button>
       <button id="btnCommitPolicy" class="btn btn-primary">Commit &amp; Push Policy</button>
     </div>
   </header>
+
   <main class="container">
+    <!-- 1. Connection Header -->
     <section class="card connection-card">
       <h2>1. GitHub Repository &amp; Auth Connection</h2>
-      <p class="hint">Your GitHub Personal Access Token (PAT) is saved strictly in browser <code>localStorage</code> and used to commit <code>policy.json</code>, <code>config.json</code>, and uploaded <code>apks/*.apk</code> files via the GitHub Contents API.</p>
+      <p class="hint">Your GitHub Personal Access Token (PAT) is saved strictly in browser <code>localStorage</code> and used to commit <code>policy.json</code>, read <code>device_state.json</code>, and upload <code>apks/*.apk</code> files via the GitHub Contents API.</p>
       <div class="grid-4">
         <label>
           <span>Owner</span>
@@ -42,12 +44,52 @@
           <input type="password" id="ghToken" placeholder="ghp_... or github_pat_..." />
         </label>
       </div>
-      <div class="status-banner" id="statusBanner">Ready. Click "Load Live Policy" to fetch the latest manifest from GitHub.</div>
+      <div class="status-banner" id="statusBanner">Ready. Click "Load Live Policy &amp; Apps" to fetch policy manifest and installed app inventory from the phone.</div>
     </section>
 
+    <!-- 2. Device Telemetry & Installed App Explorer -->
+    <section class="card">
+      <div class="card-header-row">
+        <div>
+          <h2>2. Live Device Telemetry &amp; Installed App Explorer (device_state.json)</h2>
+          <p class="hint">Reported automatically by the Android phone every 15 minutes during background sync. Click <strong>Hide</strong>, <strong>Unhide</strong>, <strong>Uninstall</strong>, or <strong>+ Kiosk</strong> on any app to populate your policy draft.</p>
+        </div>
+        <div class="telemetry-badges" id="telemetryBadges">
+          <span class="badge-pill" id="badgeDevice">Device: Waiting for phone check-in...</span>
+          <span class="badge-pill" id="badgeBattery">Battery: --%</span>
+          <span class="badge-pill" id="badgeSync">Last Sync: --</span>
+        </div>
+      </div>
+
+      <div class="app-filter-bar">
+        <input type="text" id="appSearchInput" placeholder="🔍 Filter installed apps by label or package name (e.g. Chrome, Settings, lds)..." />
+        <label class="filter-check"><input type="checkbox" id="checkShowSystemApps" /> Show System Apps</label>
+        <label class="filter-check"><input type="checkbox" id="checkOnlyHiddenApps" /> Only Hidden Apps</label>
+      </div>
+
+      <div class="app-table-wrapper">
+        <table class="app-table" id="installedAppsTable">
+          <thead>
+            <tr>
+              <th>App Name &amp; Package</th>
+              <th>Version</th>
+              <th>Type &amp; Status</th>
+              <th style="text-align: right;">1-Click Remote Actions</th>
+            </tr>
+          </thead>
+          <tbody id="installedAppsBody">
+            <tr>
+              <td colspan="4" class="empty-state">No installed apps loaded yet. Enter your GitHub PAT, click "Load Live Policy &amp; Apps", or ensure the phone has run a sync.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Policy Controls -->
     <div class="grid-2">
       <section class="card">
-        <h2>2. System User Restrictions (UserManager)</h2>
+        <h2>3. System User Restrictions (UserManager)</h2>
         <p class="hint">Enforced via <code>DevicePolicyManager.addUserRestriction()</code> / <code>clearUserRestriction()</code> through Dhizuku's Device Owner binder proxy.</p>
         <div class="toggle-list" id="restrictionsList">
           <label class="toggle-row">
@@ -110,15 +152,15 @@
       </section>
 
       <section class="card">
-        <h2>3. App Hiding, Freezing &amp; Remote Uninstall</h2>
-        <p class="hint">Freeze/hide apps via <code>setApplicationHidden(admin, pkg, true)</code> or completely uninstall apps over the air via Dhizuku's wrapped <code>PackageInstaller.uninstall()</code>.</p>
+        <h2>4. Active Policy Staging (Hide, Unhide &amp; Uninstall)</h2>
+        <p class="hint">Manual package entry or populated from the <strong>Installed App Explorer</strong> above.</p>
         <div class="input-row">
           <input type="text" id="pkgInput" placeholder="e.g. com.android.chrome or com.example.app" />
           <button id="btnAddHiddenPkg" class="btn btn-secondary">Hide / Freeze</button>
           <button id="btnAddUninstallPkg" class="btn btn-danger">Uninstall App</button>
         </div>
         <div class="preset-chips">
-          <span class="chip-label">Quick Hide Presets:</span>
+          <span class="chip-label">Quick Presets:</span>
           <button class="chip" data-pkg="com.android.chrome">Chrome</button>
           <button class="chip" data-pkg="com.google.android.youtube">YouTube</button>
           <button class="chip" data-pkg="com.android.vending">Play Store</button>
@@ -133,9 +175,10 @@
       </section>
     </div>
 
+    <!-- 4. APK Upload & Commands -->
     <div class="grid-2">
       <section class="card">
-        <h2>4. Over-The-Air APK Push &amp; Kiosk Mode</h2>
+        <h2>5. Over-The-Air APK Push &amp; Kiosk Mode</h2>
         <h3>Push Local <code>.apk</code> File from Computer</h3>
         <p class="hint">Select a local <code>.apk</code> file to upload it directly to <code>apks/</code> in your GitHub repo and queue it in <code>install_apks</code>—or paste any direct APK URL below.</p>
         <div class="grid-3">
@@ -173,7 +216,7 @@
       </section>
 
       <section class="card">
-        <h2>5. One-Shot Remote Commands &amp; Live JSON</h2>
+        <h2>6. One-Shot Remote Commands &amp; Live JSON</h2>
         <p class="hint">One-shot commands generate a unique <code>command_id</code> so the Android device executes them only once upon polling.</p>
         <div class="cmd-buttons">
           <button id="btnLockNow" class="btn btn-warn">Queue Remote Lock (lockNow)</button>
