@@ -7,229 +7,279 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="badge-dot" id="statusDot"></span>
-      <div>
-        <h1>Dhizuku GitOps MDM Console</h1>
-        <p class="subtitle">Serverless Over-The-Air Android Device Owner Control Plane (No USB / WebADB Required)</p>
+  <!-- Password & GitHub Admin Verification Lock Screen -->
+  <div id="lockScreenOverlay" class="lock-overlay">
+    <div class="lock-card">
+      <div class="lock-header">
+        <span class="badge-dot"></span>
+        <h1>Dhizuku MDM Admin Login</h1>
+      </div>
+      <p class="hint">
+        This console is restricted to authorized administrators of <strong>benjamin-brinkerhoff/dhizuku-github-mdm</strong>.
+        Unlock with your Console Password (if saved on this device) or enter your GitHub PAT with repository write access.
+      </p>
+
+      <div class="lock-form">
+        <div class="grid-2-compact">
+          <label>
+            <span>Owner</span>
+            <input type="text" id="lockOwner" value="benjamin-brinkerhoff" />
+          </label>
+          <label>
+            <span>Repository</span>
+            <input type="text" id="lockRepo" value="dhizuku-github-mdm" />
+          </label>
+        </div>
+
+        <label class="block-label">
+          <span>Console Password (encrypts &amp; unlocks your saved GitHub PAT in this browser)</span>
+          <input type="password" id="lockPassword" placeholder="Enter your console password..." />
+        </label>
+
+        <label class="block-label" id="patSetupRow">
+          <span>GitHub Personal Access Token (required on first login or when resetting password)</span>
+          <input type="password" id="lockPat" placeholder="ghp_... or github_pat_..." />
+        </label>
+
+        <div id="lockError" class="lock-error hidden"></div>
+
+        <button id="btnUnlockConsole" class="btn btn-primary full-width" style="margin-top: 1rem;">
+          Verify Admin Access &amp; Unlock Console
+        </button>
+        <button id="btnClearSavedVault" class="btn btn-secondary full-width" style="margin-top: 0.5rem;">
+          Reset Saved Token / Enter New PAT
+        </button>
       </div>
     </div>
-    <div class="actions">
-      <button id="btnLoadPolicy" class="btn btn-secondary">Load Live Policy &amp; Apps</button>
-      <button id="btnCommitPolicy" class="btn btn-primary">Commit &amp; Push Policy</button>
-    </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <!-- 1. Connection Header -->
-    <section class="card connection-card">
-      <h2>1. GitHub Repository &amp; Auth Connection</h2>
-      <p class="hint">Your GitHub Personal Access Token (PAT) is saved strictly in browser <code>localStorage</code> and used to commit <code>policy.json</code>, read <code>device_state.json</code>, and upload <code>apks/*.apk</code> files via the GitHub Contents API.</p>
-      <div class="grid-4">
-        <label>
-          <span>Owner</span>
-          <input type="text" id="ghOwner" value="benjamin-brinkerhoff" />
-        </label>
-        <label>
-          <span>Repository</span>
-          <input type="text" id="ghRepo" value="dhizuku-github-mdm" />
-        </label>
-        <label>
-          <span>Branch</span>
-          <input type="text" id="ghBranch" value="main" />
-        </label>
-        <label>
-          <span>GitHub PAT (Contents R/W)</span>
-          <input type="password" id="ghToken" placeholder="ghp_... or github_pat_..." />
-        </label>
-      </div>
-      <div class="status-banner" id="statusBanner">Ready. Click "Load Live Policy &amp; Apps" to fetch policy manifest and installed app inventory from the phone.</div>
-    </section>
-
-    <!-- 2. Device Telemetry & Installed App Explorer -->
-    <section class="card">
-      <div class="card-header-row">
+  <!-- Main Console (Hidden Until Unlocked) -->
+  <div id="consoleWrapper" class="hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="badge-dot" id="statusDot"></span>
         <div>
-          <h2>2. Live Device Telemetry &amp; Installed App Explorer (device_state.json)</h2>
-          <p class="hint">Reported automatically by the Android phone every 15 minutes during background sync. Click <strong>Hide</strong>, <strong>Unhide</strong>, <strong>Uninstall</strong>, or <strong>+ Kiosk</strong> on any app to populate your policy draft.</p>
-        </div>
-        <div class="telemetry-badges" id="telemetryBadges">
-          <span class="badge-pill" id="badgeDevice">Device: Waiting for phone check-in...</span>
-          <span class="badge-pill" id="badgeBattery">Battery: --%</span>
-          <span class="badge-pill" id="badgeSync">Last Sync: --</span>
+          <h1>Dhizuku GitOps MDM Console</h1>
+          <p class="subtitle">Serverless Over-The-Air Android Device Owner Control Plane (Authenticated Admin Session)</p>
         </div>
       </div>
-
-      <div class="app-filter-bar">
-        <input type="text" id="appSearchInput" placeholder="🔍 Filter installed apps by label or package name (e.g. Chrome, Settings, lds)..." />
-        <label class="filter-check"><input type="checkbox" id="checkShowSystemApps" /> Show System Apps</label>
-        <label class="filter-check"><input type="checkbox" id="checkOnlyHiddenApps" /> Only Hidden Apps</label>
+      <div class="actions">
+        <button id="btnLoadPolicy" class="btn btn-secondary">Load Live Policy &amp; Apps</button>
+        <button id="btnCommitPolicy" class="btn btn-primary">Commit &amp; Push Policy</button>
+        <button id="btnLockConsole" class="btn btn-danger">Lock Console</button>
       </div>
+    </header>
 
-      <div class="app-table-wrapper">
-        <table class="app-table" id="installedAppsTable">
-          <thead>
-            <tr>
-              <th>App Name &amp; Package</th>
-              <th>Version</th>
-              <th>Type &amp; Status</th>
-              <th style="text-align: right;">1-Click Remote Actions</th>
-            </tr>
-          </thead>
-          <tbody id="installedAppsBody">
-            <tr>
-              <td colspan="4" class="empty-state">No installed apps loaded yet. Enter your GitHub PAT, click "Load Live Policy &amp; Apps", or ensure the phone has run a sync.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 3. Policy Controls -->
-    <div class="grid-2">
-      <section class="card">
-        <h2>3. System User Restrictions (UserManager)</h2>
-        <p class="hint">Enforced via <code>DevicePolicyManager.addUserRestriction()</code> / <code>clearUserRestriction()</code> through Dhizuku's Device Owner binder proxy.</p>
-        <div class="toggle-list" id="restrictionsList">
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Camera</strong>
-              <small><code>no_camera</code> (DISALLOW_CAMERA + setCameraDisabled)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_camera" />
+    <main class="container">
+      <!-- 1. Connection Header -->
+      <section class="card connection-card">
+        <h2>1. GitHub Repository &amp; Auth Connection</h2>
+        <p class="hint">Verified write access to <code>policy.json</code>, <code>device_state.json</code>, and <code>apks/*.apk</code> via the GitHub REST API.</p>
+        <div class="grid-4">
+          <label>
+            <span>Owner</span>
+            <input type="text" id="ghOwner" value="benjamin-brinkerhoff" />
           </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow USB File Transfer</strong>
-              <small><code>no_usb_file_transfer</code> (DISALLOW_USB_FILE_TRANSFER)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_usb_file_transfer" />
+          <label>
+            <span>Repository</span>
+            <input type="text" id="ghRepo" value="dhizuku-github-mdm" />
           </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Physical Media / OTG</strong>
-              <small><code>no_mount_physical_media</code> (DISALLOW_MOUNT_PHYSICAL_MEDIA)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_mount_physical_media" />
+          <label>
+            <span>Branch</span>
+            <input type="text" id="ghBranch" value="main" />
           </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Safe Mode Boot</strong>
-              <small><code>no_safe_boot</code> (DISALLOW_SAFE_BOOT)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_safe_boot" checked />
-          </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Factory Reset</strong>
-              <small><code>no_factory_reset</code> (DISALLOW_FACTORY_RESET)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_factory_reset" checked />
-          </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow ADB / Debugging Features</strong>
-              <small><code>no_debugging_features</code> (DISALLOW_DEBUGGING_FEATURES)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_debugging_features" />
-          </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Unknown App Sources</strong>
-              <small><code>no_install_unknown_sources</code> (DISALLOW_INSTALL_UNKNOWN_SOURCES)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_install_unknown_sources" />
-          </label>
-          <label class="toggle-row">
-            <div>
-              <strong>Disallow Adding Users / Guest Profiles</strong>
-              <small><code>no_add_user</code> (DISALLOW_ADD_USER)</small>
-            </div>
-            <input type="checkbox" data-restriction="no_add_user" checked />
+          <label>
+            <span>Active GitHub PAT (Unlocked in Memory)</span>
+            <input type="password" id="ghToken" placeholder="ghp_... or github_pat_..." />
           </label>
         </div>
+        <div class="status-banner" id="statusBanner">Authenticated. Loading policy manifest and installed app inventory...</div>
       </section>
 
+      <!-- 2. Device Telemetry & Installed App Explorer -->
       <section class="card">
-        <h2>4. Active Policy Staging (Hide, Unhide &amp; Uninstall)</h2>
-        <p class="hint">Manual package entry or populated from the <strong>Installed App Explorer</strong> above.</p>
-        <div class="input-row">
-          <input type="text" id="pkgInput" placeholder="e.g. com.android.chrome or com.example.app" />
-          <button id="btnAddHiddenPkg" class="btn btn-secondary">Hide / Freeze</button>
-          <button id="btnAddUninstallPkg" class="btn btn-danger">Uninstall App</button>
-        </div>
-        <div class="preset-chips">
-          <span class="chip-label">Quick Presets:</span>
-          <button class="chip" data-pkg="com.android.chrome">Chrome</button>
-          <button class="chip" data-pkg="com.google.android.youtube">YouTube</button>
-          <button class="chip" data-pkg="com.android.vending">Play Store</button>
-          <button class="chip" data-pkg="com.sec.android.app.sbrowser">Samsung Internet</button>
-        </div>
-        <h3>Currently Hidden (`hide_apps`)</h3>
-        <ul id="hiddenAppsList" class="tag-list"></ul>
-        <h3>Explicitly Unhidden (`unhide_apps`)</h3>
-        <ul id="unhiddenAppsList" class="tag-list"></ul>
-        <h3>Queued for Silent Remote Uninstall (`uninstall_apps`)</h3>
-        <ul id="uninstallAppsList" class="tag-list"></ul>
-      </section>
-    </div>
-
-    <!-- 4. APK Upload & Commands -->
-    <div class="grid-2">
-      <section class="card">
-        <h2>5. Over-The-Air APK Push &amp; Kiosk Mode</h2>
-        <h3>Push Local <code>.apk</code> File from Computer</h3>
-        <p class="hint">Select a local <code>.apk</code> file to upload it directly to <code>apks/</code> in your GitHub repo and queue it in <code>install_apks</code>—or paste any direct APK URL below.</p>
-        <div class="grid-3">
-          <input type="text" id="apkPkg" placeholder="Package (com.example.app)" />
-          <input type="text" id="apkUrl" placeholder="https://.../app.apk (or auto-filled on upload)" />
-          <input type="number" id="apkVer" placeholder="Ver Code (1)" value="1" />
-        </div>
-        <div class="input-row" style="margin-top: 0.5rem;">
-          <input type="file" id="apkFileInput" accept=".apk" style="flex: 1;" />
-          <button id="btnUploadApkFile" class="btn btn-primary">Upload .apk to GitHub &amp; Queue</button>
-        </div>
-        <button id="btnAddApk" class="btn btn-secondary full-width" style="margin-top: 0.35rem;">Queue APK from URL Only</button>
-        <h3>Silent APK Install Queue (`install_apks`)</h3>
-        <ul id="apkQueueList" class="tag-list"></ul>
-
-        <hr class="sep" />
-        <h3>Kiosk / Lock Task Mode</h3>
-        <label class="toggle-row">
+        <div class="card-header-row">
           <div>
-            <strong>Enable Lock Task Allowlist Enforcement</strong>
-            <small>Applies <code>setLockTaskPackages()</code> &amp; <code>setLockTaskFeatures()</code></small>
+            <h2>2. Live Device Telemetry &amp; Installed App Explorer (device_state.json)</h2>
+            <p class="hint">Reported automatically by the Android phone every 15 minutes during background sync. Click <strong>Hide</strong>, <strong>Unhide</strong>, <strong>Uninstall</strong>, or <strong>+ Kiosk</strong> on any app to populate your policy draft.</p>
           </div>
-          <input type="checkbox" id="kioskEnabled" />
-        </label>
-        <label class="block-label">
-          <span>Lock Task Allowlisted Packages (comma-separated)</span>
-          <input type="text" id="kioskPackages" value="com.mdm.dhizuku, org.lds.ldssa" />
-        </label>
-        <div class="feature-checks">
-          <label><input type="checkbox" class="kiosk-feat" value="system_info" checked /> System Info</label>
-          <label><input type="checkbox" class="kiosk-feat" value="notifications" checked /> Notifications</label>
-          <label><input type="checkbox" class="kiosk-feat" value="home" checked /> Home</label>
-          <label><input type="checkbox" class="kiosk-feat" value="global_actions" checked /> Global Actions</label>
+          <div class="telemetry-badges" id="telemetryBadges">
+            <span class="badge-pill" id="badgeDevice">Device: Waiting for phone check-in...</span>
+            <span class="badge-pill" id="badgeBattery">Battery: --%</span>
+            <span class="badge-pill" id="badgeSync">Last Sync: --</span>
+          </div>
+        </div>
+
+        <div class="app-filter-bar">
+          <input type="text" id="appSearchInput" placeholder="Filter installed apps by label or package name (e.g. Chrome, Settings, lds)..." />
+          <label class="filter-check"><input type="checkbox" id="checkShowSystemApps" /> Show System Apps</label>
+          <label class="filter-check"><input type="checkbox" id="checkOnlyHiddenApps" /> Only Hidden Apps</label>
+        </div>
+
+        <div class="app-table-wrapper">
+          <table class="app-table" id="installedAppsTable">
+            <thead>
+              <tr>
+                <th>App Name &amp; Package</th>
+                <th>Version</th>
+                <th>Type &amp; Status</th>
+                <th style="text-align: right;">1-Click Remote Actions</th>
+              </tr>
+            </thead>
+            <tbody id="installedAppsBody">
+              <tr>
+                <td colspan="4" class="empty-state">No installed apps loaded yet. Click "Load Live Policy &amp; Apps" or ensure the phone has run a sync.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
-      <section class="card">
-        <h2>6. One-Shot Remote Commands &amp; Live JSON</h2>
-        <p class="hint">One-shot commands generate a unique <code>command_id</code> so the Android device executes them only once upon polling.</p>
-        <div class="cmd-buttons">
-          <button id="btnLockNow" class="btn btn-warn">Queue Remote Lock (lockNow)</button>
-          <button id="btnReboot" class="btn btn-danger">Queue Remote Reboot (reboot)</button>
-          <button id="btnClearCmds" class="btn btn-secondary">Clear Pending Commands</button>
-        </div>
-        <label class="block-label">
-          <span>Live <code>policy.json</code> Payload</span>
-          <textarea id="jsonPreview" rows="16" spellcheck="false"></textarea>
-        </label>
-      </section>
-    </div>
-  </main>
+      <!-- 3. Policy Controls -->
+      <div class="grid-2">
+        <section class="card">
+          <h2>3. System User Restrictions (UserManager)</h2>
+          <p class="hint">Enforced via <code>DevicePolicyManager.addUserRestriction()</code> / <code>clearUserRestriction()</code> through Dhizuku's Device Owner binder proxy.</p>
+          <div class="toggle-list" id="restrictionsList">
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Camera</strong>
+                <small><code>no_camera</code> (DISALLOW_CAMERA + setCameraDisabled)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_camera" />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow USB File Transfer</strong>
+                <small><code>no_usb_file_transfer</code> (DISALLOW_USB_FILE_TRANSFER)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_usb_file_transfer" />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Physical Media / OTG</strong>
+                <small><code>no_mount_physical_media</code> (DISALLOW_MOUNT_PHYSICAL_MEDIA)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_mount_physical_media" />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Safe Mode Boot</strong>
+                <small><code>no_safe_boot</code> (DISALLOW_SAFE_BOOT)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_safe_boot" checked />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Factory Reset</strong>
+                <small><code>no_factory_reset</code> (DISALLOW_FACTORY_RESET)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_factory_reset" checked />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow ADB / Debugging Features</strong>
+                <small><code>no_debugging_features</code> (DISALLOW_DEBUGGING_FEATURES)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_debugging_features" />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Unknown App Sources</strong>
+                <small><code>no_install_unknown_sources</code> (DISALLOW_INSTALL_UNKNOWN_SOURCES)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_install_unknown_sources" />
+            </label>
+            <label class="toggle-row">
+              <div>
+                <strong>Disallow Adding Users / Guest Profiles</strong>
+                <small><code>no_add_user</code> (DISALLOW_ADD_USER)</small>
+              </div>
+              <input type="checkbox" data-restriction="no_add_user" checked />
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>4. Active Policy Staging (Hide, Unhide &amp; Uninstall)</h2>
+          <p class="hint">Manual package entry or populated from the <strong>Installed App Explorer</strong> above.</p>
+          <div class="input-row">
+            <input type="text" id="pkgInput" placeholder="e.g. com.android.chrome or com.example.app" />
+            <button id="btnAddHiddenPkg" class="btn btn-secondary">Hide / Freeze</button>
+            <button id="btnAddUninstallPkg" class="btn btn-danger">Uninstall App</button>
+          </div>
+          <div class="preset-chips">
+            <span class="chip-label">Quick Presets:</span>
+            <button class="chip" data-pkg="com.android.chrome">Chrome</button>
+            <button class="chip" data-pkg="com.google.android.youtube">YouTube</button>
+            <button class="chip" data-pkg="com.android.vending">Play Store</button>
+            <button class="chip" data-pkg="com.sec.android.app.sbrowser">Samsung Internet</button>
+          </div>
+          <h3>Currently Hidden (`hide_apps`)</h3>
+          <ul id="hiddenAppsList" class="tag-list"></ul>
+          <h3>Explicitly Unhidden (`unhide_apps`)</h3>
+          <ul id="unhiddenAppsList" class="tag-list"></ul>
+          <h3>Queued for Silent Remote Uninstall (`uninstall_apps`)</h3>
+          <ul id="uninstallAppsList" class="tag-list"></ul>
+        </section>
+      </div>
+
+      <!-- 4. APK Upload & Commands -->
+      <div class="grid-2">
+        <section class="card">
+          <h2>5. Over-The-Air APK Push &amp; Kiosk Mode</h2>
+          <h3>Push Local <code>.apk</code> File from Computer</h3>
+          <p class="hint">Select a local <code>.apk</code> file to upload it directly to <code>apks/</code> in your GitHub repo and queue it in <code>install_apks</code>—or paste any direct APK URL below.</p>
+          <div class="grid-3">
+            <input type="text" id="apkPkg" placeholder="Package (com.example.app)" />
+            <input type="text" id="apkUrl" placeholder="https://.../app.apk (or auto-filled on upload)" />
+            <input type="number" id="apkVer" placeholder="Ver Code (1)" value="1" />
+          </div>
+          <div class="input-row" style="margin-top: 0.5rem;">
+            <input type="file" id="apkFileInput" accept=".apk" style="flex: 1;" />
+            <button id="btnUploadApkFile" class="btn btn-primary">Upload .apk to GitHub &amp; Queue</button>
+          </div>
+          <button id="btnAddApk" class="btn btn-secondary full-width" style="margin-top: 0.35rem;">Queue APK from URL Only</button>
+          <h3>Silent APK Install Queue (`install_apks`)</h3>
+          <ul id="apkQueueList" class="tag-list"></ul>
+
+          <hr class="sep" />
+          <h3>Kiosk / Lock Task Mode</h3>
+          <label class="toggle-row">
+            <div>
+              <strong>Enable Lock Task Allowlist Enforcement</strong>
+              <small>Applies <code>setLockTaskPackages()</code> &amp; <code>setLockTaskFeatures()</code></small>
+            </div>
+            <input type="checkbox" id="kioskEnabled" />
+          </label>
+          <label class="block-label">
+            <span>Lock Task Allowlisted Packages (comma-separated)</span>
+            <input type="text" id="kioskPackages" value="com.mdm.dhizuku, org.lds.ldssa" />
+          </label>
+          <div class="feature-checks">
+            <label><input type="checkbox" class="kiosk-feat" value="system_info" checked /> System Info</label>
+            <label><input type="checkbox" class="kiosk-feat" value="notifications" checked /> Notifications</label>
+            <label><input type="checkbox" class="kiosk-feat" value="home" checked /> Home</label>
+            <label><input type="checkbox" class="kiosk-feat" value="global_actions" checked /> Global Actions</label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>6. One-Shot Remote Commands &amp; Live JSON</h2>
+          <p class="hint">One-shot commands generate a unique <code>command_id</code> so the Android device executes them only once upon polling.</p>
+          <div class="cmd-buttons">
+            <button id="btnLockNow" class="btn btn-warn">Queue Remote Lock (lockNow)</button>
+            <button id="btnReboot" class="btn btn-danger">Queue Remote Reboot (reboot)</button>
+            <button id="btnClearCmds" class="btn btn-secondary">Clear Pending Commands</button>
+          </div>
+          <label class="block-label">
+            <span>Live <code>policy.json</code> Payload</span>
+            <textarea id="jsonPreview" rows="16" spellcheck="false"></textarea>
+          </label>
+        </section>
+      </div>
+    </main>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
