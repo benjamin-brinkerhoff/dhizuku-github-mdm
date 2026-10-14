@@ -58,7 +58,7 @@ h1 {
   gap: 0.75rem;
 }
 .container {
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 1.5rem auto;
   padding: 0 1.25rem;
   display: flex;
@@ -70,6 +70,163 @@ h1 {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.25rem;
+}
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.telemetry-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.badge-pill {
+  background: #090d16;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.app-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.app-filter-bar input[type="text"] {
+  flex: 1;
+  min-width: 260px;
+}
+.filter-check {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+.app-table-wrapper {
+  max-height: 380px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #090d16;
+}
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+.app-table th {
+  position: sticky;
+  top: 0;
+  background: #101726;
+  color: var(--muted);
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  font-weight: 600;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border);
+}
+.app-table td {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid #1a243a;
+  vertical-align: middle;
+}
+.app-table tr:hover {
+  background: #111a2f;
+}
+.app-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.app-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #1e293b;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+}
+.app-title {
+  display: block;
+  font-size: 0.86rem;
+  color: #f8fafc;
+}
+.app-pkg {
+  font-family: monospace;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.app-ver {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.pill {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+.pill-system {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+.pill-user {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+.pill-hidden {
+  background: #78350f;
+  color: #fde68a;
+}
+.pill-visible {
+  background: #1e293b;
+  color: var(--muted);
+}
+.pill-danger {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+.pill-accent {
+  background: #0369a1;
+  color: #bae6fd;
+}
+.row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+.btn-xs {
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: var(--muted);
 }
 h2 {
   font-size: 1.05rem;
