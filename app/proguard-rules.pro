@@ -1,0 +1,2 @@
+-keep class android.app.admin.** { *; }
+-keep class com.rosan.dhizuku.** { *; }
