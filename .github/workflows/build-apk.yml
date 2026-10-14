@@ -7,6 +7,7 @@ on:
       - 'policy.json'
       - 'config.json'
       - 'docs/**'
+      - 'apks/**'
   workflow_dispatch:
 
 permissions:
