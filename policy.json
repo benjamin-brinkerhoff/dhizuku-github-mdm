@@ -1,6 +1,6 @@
 {
-  "policy_version": 5,
-  "updated_at": "2026-10-14T21:48:57.561Z",
+  "policy_version": 6,
+  "updated_at": "2026-10-14T21:53:03.962Z",
   "hide_apps": [],
   "unhide_apps": [],
   "uninstall_apps": [],
@@ -44,6 +44,11 @@
     {
       "package_name": "com.orion.store",
       "apk_url": "https://raw.githubusercontent.com/benjamin-brinkerhoff/dhizuku-github-mdm/main/apks/com.orion.store-v1.apk",
+      "version_code": 1
+    },
+    {
+      "package_name": "com.rosan.installer.x.revived",
+      "apk_url": "https://raw.githubusercontent.com/benjamin-brinkerhoff/dhizuku-github-mdm/main/apks/com.rosan.installer.x.revived-v1.apk",
       "version_code": 1
     }
   ],
