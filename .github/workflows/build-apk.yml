@@ -7,6 +7,10 @@ on:
       - 'policy.json'
       - 'config.json'
       - 'device_state.json'
+      - 'index.html'
+      - 'app.js'
+      - 'styles.css'
+      - '.nojekyll'
       - 'docs/**'
       - 'apks/**'
   workflow_dispatch:
@@ -39,8 +43,8 @@ jobs:
           fi
           chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build Debug APK with Run Number Versioning
+        run: ./gradlew assembleDebug -PversionCode=${{ github.run_number }} -PversionName="1.0.${{ github.run_number }}" --stacktrace
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
