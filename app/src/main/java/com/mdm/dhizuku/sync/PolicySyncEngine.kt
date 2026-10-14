@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import com.mdm.dhizuku.dhizuku.DhizukuBridge
+import com.mdm.dhizuku.updater.SelfUpdateManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -104,7 +105,7 @@ object PolicySyncEngine {
                 appendLog(context, "Kiosk config error: ${it.message}")
             }
 
-            // Check & execute silent APK installs
+            // Check & execute silent third-party APK installs
             for (apkSpec in manifest.installApks) {
                 val installedVer = getInstalledVersionCode(context, apkSpec.packageName)
                 if (installedVer < apkSpec.versionCode) {
@@ -159,6 +160,9 @@ object PolicySyncEngine {
 
             // Upload live device state & installed apps list back to GitHub
             DeviceStateReporter.reportDeviceState(context)
+
+            // Automatically check GitHub Releases for self-updates to the MDM agent itself
+            SelfUpdateManager.checkForSelfUpdate(context)
 
             manifest
         }.onFailure {
