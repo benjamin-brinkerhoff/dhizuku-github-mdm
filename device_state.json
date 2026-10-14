@@ -2,9 +2,9 @@
   "device_model": "samsung SM-A156U1",
   "android_version": "16",
   "sdk_int": 36,
-  "last_sync": "2026-10-14T16:13:06Z",
+  "last_sync": "2026-10-14T16:34:16Z",
   "battery_percent": 34,
-  "is_charging": false,
+  "is_charging": true,
   "dhizuku_active": true,
   "installed_apps_count": 442,
   "installed_apps": [
