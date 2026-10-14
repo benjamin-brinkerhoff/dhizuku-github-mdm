@@ -12,7 +12,7 @@
       <span class="badge-dot" id="statusDot"></span>
       <div>
         <h1>Dhizuku GitOps MDM Console</h1>
-        <p class="subtitle">Serverless Android Device Owner Control Plane via GitHub REST API</p>
+        <p class="subtitle">Serverless Over-The-Air Android Device Owner Control Plane (No USB / WebADB Required)</p>
       </div>
     </div>
     <div class="actions">
@@ -23,7 +23,7 @@
   <main class="container">
     <section class="card connection-card">
       <h2>1. GitHub Repository &amp; Auth Connection</h2>
-      <p class="hint">Your GitHub Personal Access Token (PAT) is saved strictly in browser <code>localStorage</code> and used to commit <code>policy.json</code> &amp; <code>config.json</code> via the GitHub Contents API.</p>
+      <p class="hint">Your GitHub Personal Access Token (PAT) is saved strictly in browser <code>localStorage</code> and used to commit <code>policy.json</code>, <code>config.json</code>, and uploaded <code>apks/*.apk</code> files via the GitHub Contents API.</p>
       <div class="grid-4">
         <label>
           <span>Owner</span>
@@ -44,6 +44,7 @@
       </div>
       <div class="status-banner" id="statusBanner">Ready. Click "Load Live Policy" to fetch the latest manifest from GitHub.</div>
     </section>
+
     <div class="grid-2">
       <section class="card">
         <h2>2. System User Restrictions (UserManager)</h2>
@@ -52,7 +53,7 @@
           <label class="toggle-row">
             <div>
               <strong>Disallow Camera</strong>
-              <small><code>no_camera</code> (DISALLOW_CAMERA)</small>
+              <small><code>no_camera</code> (DISALLOW_CAMERA + setCameraDisabled)</small>
             </div>
             <input type="checkbox" data-restriction="no_camera" />
           </label>
@@ -107,29 +108,51 @@
           </label>
         </div>
       </section>
+
       <section class="card">
-        <h2>3. App Hiding &amp; Freezing (setApplicationHidden)</h2>
-        <p class="hint">Packages in <strong>Hidden Apps</strong> are immediately frozen and hidden from the launcher via <code>setApplicationHidden(admin, pkg, true)</code>. Removing a package moves it to <code>unhide_apps</code> to restore visibility.</p>
+        <h2>3. App Hiding, Freezing &amp; Remote Uninstall</h2>
+        <p class="hint">Freeze/hide apps via <code>setApplicationHidden(admin, pkg, true)</code> or completely uninstall apps over the air via Dhizuku's wrapped <code>PackageInstaller.uninstall()</code>.</p>
         <div class="input-row">
-          <input type="text" id="pkgInput" placeholder="e.g. com.android.chrome" />
-          <button id="btnAddHiddenPkg" class="btn btn-secondary">Hide Package</button>
+          <input type="text" id="pkgInput" placeholder="e.g. com.android.chrome or com.example.app" />
+          <button id="btnAddHiddenPkg" class="btn btn-secondary">Hide / Freeze</button>
+          <button id="btnAddUninstallPkg" class="btn btn-danger">Uninstall App</button>
         </div>
         <div class="preset-chips">
-          <span class="chip-label">Quick Presets:</span>
+          <span class="chip-label">Quick Hide Presets:</span>
           <button class="chip" data-pkg="com.android.chrome">Chrome</button>
           <button class="chip" data-pkg="com.google.android.youtube">YouTube</button>
           <button class="chip" data-pkg="com.android.vending">Play Store</button>
           <button class="chip" data-pkg="com.sec.android.app.sbrowser">Samsung Internet</button>
         </div>
-        <h3>Currently Hidden (hide_apps)</h3>
+        <h3>Currently Hidden (`hide_apps`)</h3>
         <ul id="hiddenAppsList" class="tag-list"></ul>
-        <h3>Explicitly Unhidden (unhide_apps)</h3>
+        <h3>Explicitly Unhidden (`unhide_apps`)</h3>
         <ul id="unhiddenAppsList" class="tag-list"></ul>
+        <h3>Queued for Silent Remote Uninstall (`uninstall_apps`)</h3>
+        <ul id="uninstallAppsList" class="tag-list"></ul>
       </section>
     </div>
+
     <div class="grid-2">
       <section class="card">
-        <h2>4. Kiosk / Lock Task Mode &amp; Silent APK Install</h2>
+        <h2>4. Over-The-Air APK Push &amp; Kiosk Mode</h2>
+        <h3>Push Local <code>.apk</code> File from Computer</h3>
+        <p class="hint">Select a local <code>.apk</code> file to upload it directly to <code>apks/</code> in your GitHub repo and queue it in <code>install_apks</code>—or paste any direct APK URL below.</p>
+        <div class="grid-3">
+          <input type="text" id="apkPkg" placeholder="Package (com.example.app)" />
+          <input type="text" id="apkUrl" placeholder="https://.../app.apk (or auto-filled on upload)" />
+          <input type="number" id="apkVer" placeholder="Ver Code (1)" value="1" />
+        </div>
+        <div class="input-row" style="margin-top: 0.5rem;">
+          <input type="file" id="apkFileInput" accept=".apk" style="flex: 1;" />
+          <button id="btnUploadApkFile" class="btn btn-primary">Upload .apk to GitHub &amp; Queue</button>
+        </div>
+        <button id="btnAddApk" class="btn btn-secondary full-width" style="margin-top: 0.35rem;">Queue APK from URL Only</button>
+        <h3>Silent APK Install Queue (`install_apks`)</h3>
+        <ul id="apkQueueList" class="tag-list"></ul>
+
+        <hr class="sep" />
+        <h3>Kiosk / Lock Task Mode</h3>
         <label class="toggle-row">
           <div>
             <strong>Enable Lock Task Allowlist Enforcement</strong>
@@ -147,17 +170,8 @@
           <label><input type="checkbox" class="kiosk-feat" value="home" checked /> Home</label>
           <label><input type="checkbox" class="kiosk-feat" value="global_actions" checked /> Global Actions</label>
         </div>
-        <hr class="sep" />
-        <h3>Silent APK Install Queue (PackageInstaller)</h3>
-        <p class="hint">The Android worker downloads each APK URL and commits a silent <code>PackageInstaller</code> session via Dhizuku if the installed version is lower than <code>version_code</code>.</p>
-        <div class="grid-3">
-          <input type="text" id="apkPkg" placeholder="Package (com.example.app)" />
-          <input type="text" id="apkUrl" placeholder="https://.../app.apk" />
-          <input type="number" id="apkVer" placeholder="Ver Code (1)" value="1" />
-        </div>
-        <button id="btnAddApk" class="btn btn-secondary full-width">Add APK to Silent Install Manifest</button>
-        <ul id="apkQueueList" class="tag-list"></ul>
       </section>
+
       <section class="card">
         <h2>5. One-Shot Remote Commands &amp; Live JSON</h2>
         <p class="hint">One-shot commands generate a unique <code>command_id</code> so the Android device executes them only once upon polling.</p>
@@ -168,7 +182,7 @@
         </div>
         <label class="block-label">
           <span>Live <code>policy.json</code> Payload</span>
-          <textarea id="jsonPreview" rows="14" spellcheck="false"></textarea>
+          <textarea id="jsonPreview" rows="16" spellcheck="false"></textarea>
         </label>
       </section>
     </div>
