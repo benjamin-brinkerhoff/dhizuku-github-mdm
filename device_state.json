@@ -2,11 +2,11 @@
   "device_model": "samsung SM-A156U1",
   "android_version": "16",
   "sdk_int": 36,
-  "last_sync": "2026-10-14T15:55:19Z",
-  "battery_percent": 35,
+  "last_sync": "2026-10-14T16:13:06Z",
+  "battery_percent": 34,
   "is_charging": false,
   "dhizuku_active": true,
-  "installed_apps_count": 443,
+  "installed_apps_count": 442,
   "installed_apps": [
     {
       "package_name": "com.google.android.networkstack.tethering",
@@ -2949,14 +2949,6 @@
       "app_name": "Android System SafetyCore",
       "version_name": "1.0.989369273",
       "version_code": 28110,
-      "is_system_app": false,
-      "is_hidden": false
-    },
-    {
-      "package_name": "com.custone.talky",
-      "app_name": "Talky",
-      "version_name": "1.0",
-      "version_code": 1,
       "is_system_app": false,
       "is_hidden": false
     },
