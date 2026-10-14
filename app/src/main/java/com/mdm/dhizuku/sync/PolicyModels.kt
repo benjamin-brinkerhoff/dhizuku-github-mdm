@@ -5,6 +5,7 @@ import org.json.JSONObject
 data class ApkInstallSpec(
     val packageName: String,
     val apkUrl: String,
+    val apkUrls: List<String> = emptyList(),
     val versionCode: Long
 )
 
@@ -103,9 +104,25 @@ data class MdmPolicyManifest(
                     val obj = apkArr.optJSONObject(i) ?: continue
                     val pkg = obj.optString("package_name").trim()
                     val url = obj.optString("apk_url").trim()
+                    val urlsList = mutableListOf<String>()
+                    val urlsArr = obj.optJSONArray("apk_urls")
+                    if (urlsArr != null) {
+                        for (j in 0 until urlsArr.length()) {
+                            val u = urlsArr.optString(j).trim()
+                            if (u.isNotEmpty()) urlsList.add(u)
+                        }
+                    }
+                    val primaryUrl = if (url.isNotEmpty()) url else (urlsList.firstOrNull() ?: "")
                     val ver = obj.optLong("version_code", 1L)
-                    if (pkg.isNotEmpty() && url.isNotEmpty()) {
-                        apks.add(ApkInstallSpec(pkg, url, ver))
+                    if (pkg.isNotEmpty() && primaryUrl.isNotEmpty()) {
+                        apks.add(
+                            ApkInstallSpec(
+                                packageName = pkg,
+                                apkUrl = primaryUrl,
+                                apkUrls = if (urlsList.isNotEmpty()) urlsList else listOf(primaryUrl),
+                                versionCode = ver
+                            )
+                        )
                     }
                 }
             }
