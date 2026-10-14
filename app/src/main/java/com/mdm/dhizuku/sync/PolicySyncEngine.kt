@@ -156,6 +156,10 @@ object PolicySyncEngine {
                 context,
                 "Synced policy v${manifest.policyVersion} (${targetHidden.size} hidden, ${manifest.uninstallApps.size} uninstalls, ${manifest.installApks.size} installs)"
             )
+
+            // Upload live device state & installed apps list back to GitHub
+            DeviceStateReporter.reportDeviceState(context)
+
             manifest
         }.onFailure {
             appendLog(context, "Sync failed: ${it.message}")
