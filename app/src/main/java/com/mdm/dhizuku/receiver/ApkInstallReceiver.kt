@@ -11,11 +11,12 @@ class ApkInstallReceiver : BroadcastReceiver() {
         if (intent == null) return
         val status = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE)
         val pkg = intent.getStringExtra("pkg") ?: "unknown"
+        val op = intent.getStringExtra("op") ?: "install"
         val msg = intent.getStringExtra(PackageInstaller.EXTRA_STATUS_MESSAGE) ?: ""
         if (status == PackageInstaller.STATUS_SUCCESS) {
-            PolicySyncEngine.appendLog(context, "Silent install succeeded: $pkg")
+            PolicySyncEngine.appendLog(context, "Silent $op succeeded: $pkg")
         } else {
-            PolicySyncEngine.appendLog(context, "Silent install status $status for $pkg: $msg")
+            PolicySyncEngine.appendLog(context, "Silent $op status $status for $pkg: $msg")
         }
     }
 }
