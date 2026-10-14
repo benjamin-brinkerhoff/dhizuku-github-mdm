@@ -26,7 +26,10 @@ const DEFAULT_POLICY = {
     reboot: false
   }
 };
+
 let state = structuredClone(DEFAULT_POLICY);
+let installedApps = [];
+
 const elOwner = document.getElementById("ghOwner");
 const elRepo = document.getElementById("ghRepo");
 const elBranch = document.getElementById("ghBranch");
@@ -106,6 +109,7 @@ function renderStateToUI() {
   });
 
   elJson.value = JSON.stringify(state, null, 2);
+  renderInstalledAppsTable();
 }
 
 function syncControlsToState() {
@@ -123,6 +127,7 @@ function syncControlsToState() {
     .filter(Boolean);
   state.kiosk.lock_task_features = Array.from(document.querySelectorAll(".kiosk-feat:checked")).map((cb) => cb.value);
   elJson.value = JSON.stringify(state, null, 2);
+  renderInstalledAppsTable();
 }
 
 document.querySelectorAll("[data-restriction], #kioskEnabled, #kioskPackages, .kiosk-feat").forEach((el) => {
@@ -139,10 +144,29 @@ function hidePackage(pkg) {
   renderStateToUI();
 }
 
+function unhidePackage(pkg) {
+  const clean = pkg.trim();
+  if (!clean) return;
+  state.hide_apps = (state.hide_apps || []).filter((p) => p !== clean);
+  state.unhide_apps = Array.from(new Set([...(state.unhide_apps || []), clean]));
+  syncControlsToState();
+  renderStateToUI();
+}
+
 function queueUninstallPackage(pkg) {
   const clean = pkg.trim();
   if (!clean) return;
   state.uninstall_apps = Array.from(new Set([...(state.uninstall_apps || []), clean]));
+  syncControlsToState();
+  renderStateToUI();
+}
+
+function addKioskPackage(pkg) {
+  const clean = pkg.trim();
+  if (!clean) return;
+  const current = (state.kiosk && state.kiosk.lock_task_packages) || [];
+  state.kiosk = state.kiosk || {};
+  state.kiosk.lock_task_packages = Array.from(new Set([...current, clean]));
   syncControlsToState();
   renderStateToUI();
 }
@@ -165,30 +189,40 @@ document.querySelectorAll(".chip").forEach((btn) => {
 
 document.addEventListener("click", (e) => {
   const unhidePkg = e.target.getAttribute("data-unhide");
-  if (unhidePkg) {
-    state.hide_apps = (state.hide_apps || []).filter((p) => p !== unhidePkg);
-    state.unhide_apps = Array.from(new Set([...(state.unhide_apps || []), unhidePkg]));
-    syncControlsToState();
-    renderStateToUI();
-  }
+  if (unhidePkg) unhidePackage(unhidePkg);
+
   const remUnhide = e.target.getAttribute("data-remove-unhide");
   if (remUnhide) {
     state.unhide_apps = (state.unhide_apps || []).filter((p) => p !== remUnhide);
     syncControlsToState();
     renderStateToUI();
   }
+
   const remUninstall = e.target.getAttribute("data-remove-uninstall");
   if (remUninstall) {
     state.uninstall_apps = (state.uninstall_apps || []).filter((p) => p !== remUninstall);
     syncControlsToState();
     renderStateToUI();
   }
+
   const remApk = e.target.getAttribute("data-remove-apk");
   if (remApk !== null && remApk !== undefined) {
     state.install_apks.splice(Number(remApk), 1);
     syncControlsToState();
     renderStateToUI();
   }
+
+  const actionHide = e.target.getAttribute("data-action-hide");
+  if (actionHide) hidePackage(actionHide);
+
+  const actionUnhide = e.target.getAttribute("data-action-unhide");
+  if (actionUnhide) unhidePackage(actionUnhide);
+
+  const actionUninstall = e.target.getAttribute("data-action-uninstall");
+  if (actionUninstall) queueUninstallPackage(actionUninstall);
+
+  const actionKiosk = e.target.getAttribute("data-action-kiosk");
+  if (actionKiosk) addKioskPackage(actionKiosk);
 });
 
 document.getElementById("btnAddApk").addEventListener("click", () => {
@@ -272,40 +306,130 @@ document.getElementById("btnUploadApkFile").addEventListener("click", async () =
   }
 });
 
-document.getElementById("btnLockNow").addEventListener("click", () => {
-  state.remote_commands = {
-    command_id: "cmd-lock-" + Date.now(),
-    lock_now: true,
-    reboot: false
-  };
-  syncControlsToState();
-  setStatus("Queued one-shot lockNow command (" + state.remote_commands.command_id + "). Click Commit & Push Policy to dispatch.");
-});
+function renderInstalledAppsTable() {
+  const tbody = document.getElementById("installedAppsBody");
+  if (!tbody) return;
 
-document.getElementById("btnReboot").addEventListener("click", () => {
-  state.remote_commands = {
-    command_id: "cmd-reboot-" + Date.now(),
-    lock_now: false,
-    reboot: true
-  };
-  syncControlsToState();
-  setStatus("Queued one-shot reboot command (" + state.remote_commands.command_id + "). Click Commit & Push Policy to dispatch.");
-});
+  const query = (document.getElementById("appSearchInput")?.value || "").toLowerCase().trim();
+  const showSystem = Boolean(document.getElementById("checkShowSystemApps")?.checked);
+  const onlyHidden = Boolean(document.getElementById("checkOnlyHiddenApps")?.checked);
 
-document.getElementById("btnClearCmds").addEventListener("click", () => {
-  state.remote_commands = {
-    command_id: "cmd-clear-" + Date.now(),
-    lock_now: false,
-    reboot: false
-  };
-  syncControlsToState();
-});
+  const hiddenSet = new Set(state.hide_apps || []);
+  const uninstallSet = new Set(state.uninstall_apps || []);
+  const kioskSet = new Set((state.kiosk && state.kiosk.lock_task_packages) || []);
 
-elJson.addEventListener("input", () => {
+  const filtered = installedApps.filter((app) => {
+    if (!showSystem && app.is_system_app) return false;
+    const isCurrentlyHidden = hiddenSet.has(app.package_name) || app.is_hidden;
+    if (onlyHidden && !isCurrentlyHidden) return false;
+
+    if (!query) return true;
+    return (
+      app.package_name.toLowerCase().includes(query) ||
+      (app.app_name && app.app_name.toLowerCase().includes(query))
+    );
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" class="empty-state">${
+      installedApps.length === 0
+        ? "No apps reported yet by device. Ensure the phone has completed a sync with GitHub PAT configured."
+        : "No apps matched your search/filter criteria."
+    }</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered
+    .map((app) => {
+      const isHidden = hiddenSet.has(app.package_name);
+      const isQueuedUninstall = uninstallSet.has(app.package_name);
+      const isKiosk = kioskSet.has(app.package_name);
+
+      return `<tr>
+        <td>
+          <div class="app-info">
+            <span class="app-icon-badge">${(app.app_name || app.package_name)[0].toUpperCase()}</span>
+            <div>
+              <strong class="app-title">${escapeHtml(app.app_name || app.package_name)}</strong>
+              <small class="app-pkg">${escapeHtml(app.package_name)}</small>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="app-ver">${escapeHtml(app.version_name || "v" + app.version_code)}</span>
+        </td>
+        <td>
+          <span class="pill ${app.is_system_app ? "pill-system" : "pill-user"}">${app.is_system_app ? "System" : "User"}</span>
+          <span class="pill ${isHidden ? "pill-hidden" : "pill-visible"}">${isHidden ? "Hidden / Frozen" : "Visible"}</span>
+          ${isQueuedUninstall ? '<span class="pill pill-danger">Uninstall Pending</span>' : ""}
+          ${isKiosk ? '<span class="pill pill-accent">In Kiosk</span>' : ""}
+        </td>
+        <td style="text-align: right;">
+          <div class="row-actions">
+            ${
+              isHidden
+                ? `<button class="btn-xs btn-secondary" data-action-unhide="${escapeHtml(app.package_name)}">Unhide</button>`
+                : `<button class="btn-xs btn-secondary" data-action-hide="${escapeHtml(app.package_name)}">Hide</button>`
+            }
+            <button class="btn-xs btn-danger" data-action-uninstall="${escapeHtml(app.package_name)}">Uninstall</button>
+            <button class="btn-xs btn-secondary" data-action-kiosk="${escapeHtml(app.package_name)}">+ Kiosk</button>
+          </div>
+        </td>
+      </tr>`;
+    })
+    .join("");
+}
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+document.getElementById("appSearchInput")?.addEventListener("input", renderInstalledAppsTable);
+document.getElementById("checkShowSystemApps")?.addEventListener("change", renderInstalledAppsTable);
+document.getElementById("checkOnlyHiddenApps")?.addEventListener("change", renderInstalledAppsTable);
+
+async function fetchDeviceStateFromGitHub() {
+  const owner = elOwner.value.trim();
+  const repo = elRepo.value.trim();
+  const branch = elBranch.value.trim() || "main";
+  const token = elToken.value.trim();
+  const headers = { Accept: "application/vnd.github+json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   try {
-    state = JSON.parse(elJson.value);
-  } catch (_) {}
-});
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/device_state.json?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
+      { headers }
+    );
+    if (!res.ok) return;
+    const data = await res.json();
+    const decoded = atob(data.content.replace(/\n/g, ""));
+    const stateObj = JSON.parse(decoded);
+
+    installedApps = Array.isArray(stateObj.installed_apps) ? stateObj.installed_apps : [];
+
+    const badgeDev = document.getElementById("badgeDevice");
+    if (badgeDev && stateObj.device_model) {
+      badgeDev.textContent = `Device: ${stateObj.device_model} (Android ${stateObj.android_version || ""})`;
+    }
+    const badgeBat = document.getElementById("badgeBattery");
+    if (badgeBat && stateObj.battery_percent !== undefined && stateObj.battery_percent >= 0) {
+      badgeBat.textContent = `Battery: ${stateObj.battery_percent}%${stateObj.is_charging ? " ⚡" : ""}`;
+    }
+    const badgeSync = document.getElementById("badgeSync");
+    if (badgeSync && stateObj.last_sync) {
+      badgeSync.textContent = `Last Check-in: ${new Date(stateObj.last_sync).toLocaleTimeString()}`;
+    }
+
+    renderInstalledAppsTable();
+  } catch (err) {
+    console.warn("device_state.json not available yet:", err);
+  }
+}
 
 async function fetchPolicyFromGitHub() {
   saveAuth();
@@ -313,7 +437,7 @@ async function fetchPolicyFromGitHub() {
   const repo = elRepo.value.trim();
   const branch = elBranch.value.trim() || "main";
   const token = elToken.value.trim();
-  setStatus(`Fetching policy.json from ${owner}/${repo}@${branch}...`);
+  setStatus(`Fetching policy.json and device_state.json from ${owner}/${repo}@${branch}...`);
   const headers = { Accept: "application/vnd.github+json" };
   if (token) headers.Authorization = `Bearer ${token}`;
   try {
@@ -327,6 +451,8 @@ async function fetchPolicyFromGitHub() {
     state = { ...structuredClone(DEFAULT_POLICY), ...JSON.parse(decoded) };
     renderStateToUI();
     setStatus(`Loaded policy.json (version ${state.policy_version || 1}, SHA ${data.sha.slice(0, 7)}).`);
+
+    await fetchDeviceStateFromGitHub();
   } catch (err) {
     setStatus(`Failed to load policy.json: ${err.message}`, true);
   }
